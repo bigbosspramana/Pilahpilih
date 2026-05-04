@@ -21,14 +21,14 @@ return new class extends Migration
             $table->text('address_detail')->nullable();
             $table->enum('role', ['buyer', 'seller']);
             $table->enum('account_type', ['personal', 'business']);
-            $table->string('profile_photo')->nullable();  // path/url ke storage
-            // Business profile — nullable untuk personal
+            $table->string('profile_photo')->nullable(); // Business profile — nullable untuk personal
             $table->string('store_name', 100)->nullable();
             $table->enum('business_type', [
                 'catering', 'restaurant', 'bakery', 'food_stall', 'other'
             ])->nullable();
             $table->text('business_description')->nullable();
             $table->boolean('is_verified')->default(false);
+            $table->string('fcm_token')->nullable(); // untuk push notification
             $table->timestamps();
         });
     }

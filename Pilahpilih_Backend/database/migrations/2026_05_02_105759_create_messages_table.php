@@ -15,19 +15,22 @@ return new class extends Migration
             $table->id();
             $table->string('sender_id', 20);
             $table->string('receiver_id', 20);
-            $table->text('body');
+            $table->text('body')->nullable(); // nullable karena bisa kirim foto/video tanpa teks
+            $table->string('media_url')->nullable();
+            $table->enum('media_type', ['image', 'video'])->nullable();
+            $table->enum('message_type', ['text', 'image', 'video'])->default('text');
             $table->boolean('is_read')->default(false);
             $table->timestamps();
 
             $table->foreign('sender_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
 
             $table->foreign('receiver_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
         });
     }
 
