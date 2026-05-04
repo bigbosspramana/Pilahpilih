@@ -29,6 +29,7 @@ class User extends Authenticatable
         'business_type',
         'business_description',
         'is_verified',
+        'fcm_token',
     ];
 
     protected $hidden = [

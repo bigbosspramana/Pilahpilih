@@ -10,6 +10,9 @@ class Message extends Model
         'sender_id',
         'receiver_id',
         'body',
+        'media_url',
+        'media_type',
+        'message_type', 
         'is_read',
     ];
 
@@ -25,5 +28,17 @@ class Message extends Model
     public function receiver()
     {
         return $this->belongsTo(User::class, 'receiver_id');
+    }
+
+    // Scope helper
+    public function scopeConversation($query, $userId, $otherUserId)
+    {
+        return $query->where(function ($q) use ($userId, $otherUserId) {
+            $q->where('sender_id', $userId)
+              ->where('receiver_id', $otherUserId);
+        })->orWhere(function ($q) use ($userId, $otherUserId) {
+            $q->where('sender_id', $otherUserId)
+              ->where('receiver_id', $userId);
+        })->orderBy('created_at', 'asc');
     }
 }
