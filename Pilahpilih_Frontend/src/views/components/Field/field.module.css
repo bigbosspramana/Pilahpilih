@@ -43,3 +43,7 @@
   height: 20px;
   pointer-events: none;
 }
+
+.noIconPadding {
+  padding-right: 16px !important; 
+}

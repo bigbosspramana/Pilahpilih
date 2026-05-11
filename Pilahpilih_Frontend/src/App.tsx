@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import LoginPage from './views/pages/Login/login_screen';
+import RegisterPage from './views/pages/Register/regist_screen';
 
 export default function App() {
   const isLoading = false;
@@ -12,7 +13,8 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/regist" element={<RegisterPage />} />
 
         {/* ======================================= */}
         {/* RUTE DENGAN NAVBAR KHUSUS USER          */}
