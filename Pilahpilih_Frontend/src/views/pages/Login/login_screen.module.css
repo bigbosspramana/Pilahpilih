@@ -1,0 +1,179 @@
+.backgroundScreen {
+  background: var(--bg-primary);
+}
+
+.logoWrapper {
+  margin: 10px 0 20px;
+}
+
+.logoBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logoIcon {
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(56, 102, 65, 0.2);
+  padding: 20px;
+  border-radius: 20px;
+  width: 28px;
+  height: 28px;
+}
+
+/* Teks Header */
+.headerText {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 32px;
+  padding: 0 10px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin: 0 0 12px 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #666666;
+  margin: 0;
+  padding: 0 20px;
+  line-height: 1.5;
+}
+
+/* Form Container */
+.formContainer {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputField {
+  width: 100%;
+  padding: 16px 48px 16px 16px;
+  font-size: 15px;
+  color: var(--text-primary);
+  background-color: #f0f2f0;
+  border: 1px solid #e0e4e0;
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.inputField::placeholder {
+  color: #666;
+}
+
+.inputField:focus {
+  border-color: var(--primary-color);
+  background-color: var(--bg-primary);
+}
+
+.inputIcon {
+  position: absolute;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+.forgotPasswordWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px;
+}
+
+.forgotPassword {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.btn {
+  font-size: 18px;
+}
+
+.registerText {
+  margin: 40px 0 30px;
+  font-size: 15px;
+  color: #666666;
+  text-align: center;
+}
+
+.registerLink {
+  font-family: "Inter-Bold", sans-serif;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+/* Info Card / Misi */
+.infoCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background-color: #eaecea;
+  padding: 20px;
+  border-radius: 20px;
+  border: 2px solid #e0e4e0;
+}
+
+.infoIconWrapper {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background-color: #7a8b7c;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.infoTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.infoText {
+  margin: 0;
+  font-size: 13px;
+  color: #666666;
+  line-height: 1.5;
+}
