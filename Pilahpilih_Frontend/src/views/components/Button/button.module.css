@@ -1,0 +1,39 @@
+button {
+  font-family: "Inter-Bold";
+  color: var(--text-contrast);
+}
+
+.btn {
+  background: var(--button);
+  color: var(--text-contrast);
+  border: none;
+  width: 100%;
+  padding: 1.2em 0;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+.hasShadow {
+  box-shadow: 0 8px 20px -4px
+    color-mix(in srgb, var(--primary-color), transparent 60%);
+}
+
+.btnoutline {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  width: 100%;
+  padding: 1.2em 0;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+.btnghost {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: none;
+  width: 100%;
+  padding: 1.2em 0;
+  border-radius: 9999px;
+  font-weight: bold;
+}
