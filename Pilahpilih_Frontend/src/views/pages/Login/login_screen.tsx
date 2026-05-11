@@ -2,11 +2,12 @@
 
 import MainLayout from "@/views/layouts/MainLayout/main_layout";
 import style from "./login_screen.module.css";
-import Button from "@/views/components/Button/button" 
+import Button from "@/views/components/Button/button";
 
 import logoLeaf from "@/assets/icons/logo-white.svg";
 import iconEnvelope from "@/assets/icons/email-gray.svg";
 import iconLock from "@/assets/icons/lock-gray.svg";
+import InputField from "@/views/components/Field/field";
 
 export default function LoginPage() {
   return (
@@ -27,9 +28,7 @@ export default function LoginPage() {
       </div>
 
       <div className={style.headerText}>
-        <h1 className={style.title}>
-          Selamat Datang Kembali
-        </h1>
+        <h1 className={style.title}>Selamat Datang Kembali</h1>
         <p className={style.subtitle}>
           Lanjutkan perjalanan panen sehat Anda bersama kami.
         </p>
@@ -41,34 +40,23 @@ export default function LoginPage() {
         className={style.formContainer}
       >
         {/* Input Email */}
-        <div className={style.inputGroup}>
-          <label className={style.label}>EMAIL / NO. TELEPON</label>
-          <div className={style.inputWrapper}>
-            <input
-              type="text"
-              className={style.inputField}
-              placeholder="Masukkan email Anda"
-              // value={email}
-              // onChange={(e) => setEmail(e.target.value)}
-            />
-            <img src={iconEnvelope} alt="Email" className={style.inputIcon} />
-          </div>
-        </div>
+        <InputField
+          label="EMAIL / NO. TELEPON"
+          placeholder="Masukkan email Anda"
+          // value={email}
+          // onChange={(e) => setEmail(e.target.value)}
+          icon={iconEnvelope}
+        />
 
-        {/* Input Password */}
-        <div className={style.inputGroup}>
-          <label className={style.label}>KATA SANDI</label>
-          <div className={style.inputWrapper}>
-            <input
-              type="password"
-              className={style.inputField}
-              placeholder="Masukkan password Anda"
-              // value={password}
-              // onChange={(e) => setPassword(e.target.value)}
-            />
-            <img src={iconLock} alt="Password" className={style.inputIcon} />
-          </div>
-        </div>
+        <InputField
+          label="KATA SANDI"
+          type="password"
+          placeholder="Masukkan password Anda"
+          // value={password}
+          // onChange={(e) => setPassword(e.target.value)}
+          icon={iconLock}
+          className="mt-4"
+        />
 
         {/* Lupa Kata Sandi */}
         <div className={style.forgotPasswordWrapper}>
