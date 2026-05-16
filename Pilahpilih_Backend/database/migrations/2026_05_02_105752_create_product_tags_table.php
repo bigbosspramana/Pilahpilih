@@ -6,21 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('product_tags', function (Blueprint $table) {
             $table->id();
-            $table->string('product_id', 10);
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->string('tag', 30);
             $table->timestamps();
-
-            $table->foreign('product_id')
-                ->references('id')
-                ->on('products')
-                ->onDelete('cascade');
         });
     }
 

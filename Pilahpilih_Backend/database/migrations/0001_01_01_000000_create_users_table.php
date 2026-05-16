@@ -6,13 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->string('id', 20)->primary();
+            $table->id(); // BIGINT AUTO INCREMENT
             $table->string('full_name', 50);
             $table->string('email', 50)->unique();
             $table->string('password', 255);
@@ -21,14 +18,14 @@ return new class extends Migration
             $table->text('address_detail')->nullable();
             $table->enum('role', ['buyer', 'seller']);
             $table->enum('account_type', ['personal', 'business']);
-            $table->string('profile_photo')->nullable(); // Business profile — nullable untuk personal
+            $table->string('profile_photo')->nullable();
             $table->string('store_name', 100)->nullable();
             $table->enum('business_type', [
                 'catering', 'restaurant', 'bakery', 'food_stall', 'other'
             ])->nullable();
             $table->text('business_description')->nullable();
             $table->boolean('is_verified')->default(false);
-            $table->string('fcm_token')->nullable(); // untuk push notification
+            $table->string('fcm_token')->nullable();
             $table->timestamps();
         });
     }

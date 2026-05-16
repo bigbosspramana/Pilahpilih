@@ -14,7 +14,6 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'id'                   => 'required|string|max:20|unique:users',
             'full_name'            => 'required|string|max:50',
             'email'                => 'required|email|max:50|unique:users',
             'password'             => 'required|string|min:8|confirmed',
@@ -23,14 +22,13 @@ class AuthController extends Controller
             'address_detail'       => 'nullable|string',
             'role'                 => 'required|in:buyer,seller',
             'account_type'         => 'required|in:personal,business',
-            // Business fields — wajib jika account_type = business
             'store_name'           => 'required_if:account_type,business|nullable|string|max:100',
             'business_type'        => 'required_if:account_type,business|nullable|in:catering,restaurant,bakery,food_stall,other',
             'business_description' => 'nullable|string',
         ]);
 
         $user = User::create($request->only([
-            'id', 'full_name', 'email', 'password',
+            'full_name', 'email', 'password',
             'phone', 'address', 'address_detail',
             'role', 'account_type', 'store_name',
             'business_type', 'business_description',
@@ -39,9 +37,10 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'message' => 'Registrasi berhasil',
-            'user'    => $user,
-            'token'   => $token,
+            'message'      => 'Registrasi berhasil',
+            'user'         => $user,
+            'formatted_id' => $user->formatted_id, // USR001, USR002, dst
+            'token'        => $token,
         ], 201);
     }
 

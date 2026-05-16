@@ -2,20 +2,15 @@
 
 namespace App\Models;
 
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory;
 
-    protected $primaryKey = 'id';
-    public $incrementing = false;
-    protected $keyType = 'string';
-
     protected $fillable = [
-        'id',
         'full_name',
         'email',
         'password',
@@ -33,23 +28,27 @@ class User extends Authenticatable
     ];
 
     protected $hidden = [
-        'password', // tidak muncul di response JSON
+        'password',
     ];
 
     protected $casts = [
         'is_verified' => 'boolean',
-        'password'    => 'hashed', // auto bcrypt saat disimpan
+        'password'    => 'hashed',
     ];
 
-    // ─── Relasi sebagai Seller ───────────────────────────────
+    // Format ID untuk tampilan (USR001, USR002, dst)
+    public function getFormattedIdAttribute(): string
+    {
+        return 'USR' . str_pad($this->id, 3, '0', STR_PAD_LEFT);
+    }
 
+    // ─── Relasi sebagai Seller ────────────────────────────────
     public function products()
     {
         return $this->hasMany(Product::class, 'seller_id');
     }
 
-    // ─── Relasi sebagai Buyer ────────────────────────────────
-
+    // ─── Relasi sebagai Buyer ─────────────────────────────────
     public function orders()
     {
         return $this->hasMany(Order::class, 'buyer_id');
@@ -80,8 +79,7 @@ class User extends Authenticatable
         return $this->hasMany(Notification::class, 'user_id');
     }
 
-    // ─── Relasi Message ──────────────────────────────────────
-
+    // ─── Relasi Message ───────────────────────────────────────
     public function sentMessages()
     {
         return $this->hasMany(Message::class, 'sender_id');
@@ -92,8 +90,7 @@ class User extends Authenticatable
         return $this->hasMany(Message::class, 'receiver_id');
     }
 
-    // ─── Scope Helpers ───────────────────────────────────────
-
+    // ─── Scope Helpers ────────────────────────────────────────
     public function scopeSellers($query)
     {
         return $query->where('role', 'seller');

@@ -6,24 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->string('id', 10)->primary();
-            $table->string('seller_id', 20);
+            $table->id();
+            $table->foreignId('seller_id')->constrained('users')->onDelete('cascade');
             $table->string('name', 50);
             $table->text('description')->nullable();
             $table->decimal('price_per_kg', 10, 2);
             $table->integer('stock')->default(0);
-            $table->string('photo')->nullable();  // path ke storage
+            $table->string('photo')->nullable();
             $table->enum('category', [
                 'vegetable', 'fruit', 'fish', 'meat', 'tuber', 'spice'
             ]);
-            $table->enum('status', ['available', 'out_of_stock'])
-                ->default('available');
+            $table->enum('status', ['available', 'out_of_stock'])->default('available');
             $table->enum('imperfect_label', [
                 'slightly_imperfect', 'moderately_imperfect'
             ]);
@@ -32,11 +28,6 @@ return new class extends Migration
             $table->timestamp('fresh_until')->nullable();
             $table->boolean('is_realtime_photo')->default(false);
             $table->timestamps();
-
-            $table->foreign('seller_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
         });
     }
 

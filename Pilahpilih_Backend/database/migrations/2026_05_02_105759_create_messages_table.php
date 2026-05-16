@@ -6,31 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('sender_id', 20);
-            $table->string('receiver_id', 20);
-            $table->text('body')->nullable(); // nullable karena bisa kirim foto/video tanpa teks
+            $table->foreignId('sender_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('receiver_id')->constrained('users')->onDelete('cascade');
+            $table->text('body')->nullable();
             $table->string('media_url')->nullable();
             $table->enum('media_type', ['image', 'video'])->nullable();
             $table->enum('message_type', ['text', 'image', 'video'])->default('text');
             $table->boolean('is_read')->default(false);
             $table->timestamps();
-
-            $table->foreign('sender_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade');
-
-            $table->foreign('receiver_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade');
         });
     }
 
