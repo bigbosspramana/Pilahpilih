@@ -8,7 +8,6 @@ use App\Models\InteractionLog;
 use App\Services\MediaService;
 use App\Services\CacheService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -110,7 +109,6 @@ class ProductController extends Controller
             'tags.*'                => 'string|max:30',
         ]);
 
-        $productId = 'PRD' . strtoupper(Str::random(7));
 
         $data = $request->only([
             'name', 'description', 'price_per_kg', 'stock',
@@ -118,18 +116,18 @@ class ProductController extends Controller
             'harvest_date', 'fresh_until', 'is_realtime_photo',
         ]);
 
-        $data['id']        = $productId;
         $data['seller_id'] = $request->user()->id;
+
+        $product = Product::create($data);
 
         // Upload foto produk
         if ($request->hasFile('photo')) {
-            $data['photo'] = MediaService::uploadProductPhoto(
+            $photoPath = MediaService::uploadProductPhoto(
                 $request->file('photo'),
-                $productId
+                $product->id
             );
+            $product->update(['photo' => $photoPath]);
         }
-
-        $product = Product::create($data);
 
         // Simpan tags jika ada
         if ($request->has('tags')) {
@@ -145,8 +143,9 @@ class ProductController extends Controller
         CacheService::clearProducts();
 
         return response()->json([
-            'message' => 'Produk berhasil ditambahkan',
-            'product' => $product->load('tags'),
+            'message'      => 'Produk berhasil ditambahkan',
+            'product'      => $product->load('tags'),
+            'formatted_id' => $product->formatted_id,
         ], 201);
     }
 

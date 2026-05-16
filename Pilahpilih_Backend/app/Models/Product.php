@@ -9,12 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id';
-    public $incrementing = false;
-    protected $keyType = 'string';
-
     protected $fillable = [
-        'id',
         'seller_id',
         'name',
         'description',
@@ -36,6 +31,12 @@ class Product extends Model
         'fresh_until'       => 'datetime',
         'is_realtime_photo' => 'boolean',
     ];
+
+    // Format ID untuk tampilan
+    public function getFormattedIdAttribute(): string
+    {
+        return 'PRD' . str_pad($this->id, 3, '0', STR_PAD_LEFT);
+    }
 
     public function seller()
     {
@@ -67,7 +68,6 @@ class Product extends Model
         return $this->hasMany(InteractionLog::class, 'product_id');
     }
 
-    // Scope helpers
     public function scopeAvailable($query)
     {
         return $query->where('status', 'available');
