@@ -98,6 +98,84 @@ class OrderController extends Controller
         ], 201);
     }
 
+    // ─── BUYER: Beli langsung dari halaman produk ─────────────
+    public function buyNow(Request $request)
+    {
+        $request->validate([
+            'product_id'       => 'required|integer|exists:products,id',
+            'quantity'         => 'required|integer|min:1',
+            'payment_method'   => 'required|in:qris,bank_transfer,cod',
+            'delivery_address' => 'nullable|string',
+        ]);
+
+        $user    = $request->user();
+        $product = Product::findOrFail($request->product_id);
+
+        // Cek stok
+        if ($product->stock < $request->quantity) {
+            return response()->json([
+                'message' => 'Stok tidak mencukupi',
+            ], 422);
+        }
+
+        $subtotal    = $product->price_per_kg * $request->quantity;
+        $serviceFee  = 2000;
+        $shippingFee = 0;
+        $totalAmount = $subtotal + $serviceFee + $shippingFee;
+
+        // Buat order langsung tanpa cart
+        $order = Order::create([
+            'buyer_id'         => $user->id,
+            'invoice_number'   => 'INV-' . now()->format('Ymd') . '-' . strtoupper(Str::random(4)),
+            'total_amount'     => $totalAmount,
+            'service_fee'      => $serviceFee,
+            'shipping_fee'     => $shippingFee,
+            'status'           => 'pending',
+            'payment_method'   => $request->payment_method,
+            'delivery_address' => $request->delivery_address,
+        ]);
+
+        // Buat order item
+        OrderItem::create([
+            'order_id'          => $order->id,
+            'product_id'        => $product->id,
+            'quantity'          => $request->quantity,
+            'price_at_purchase' => $product->price_per_kg,
+            'subtotal'          => $subtotal,
+        ]);
+
+        // Kurangi stok
+        $product->decrement('stock', $request->quantity);
+
+        // Catat interaksi purchase
+        InteractionLog::create([
+            'user_id'    => $user->id,
+            'product_id' => $product->id,
+            'type'       => 'purchase',
+        ]);
+
+        // Notifikasi ke seller
+        NotificationService::send(
+            $product->seller,
+            'Pesanan Baru Masuk!',
+            "Ada pesanan baru untuk produk {$product->name}.",
+            'order'
+        );
+
+        // Notifikasi ke buyer
+        NotificationService::send(
+            $user,
+            'Pesanan Berhasil Dibuat',
+            "Pesanan #{$order->invoice_number} sedang diproses.",
+            'order'
+        );
+
+        return response()->json([
+            'message' => 'Pesanan berhasil dibuat',
+            'order'   => $order->load('items.product'),
+        ], 201);
+    }
+
     // ─── BUYER: Riwayat pesanan ───────────────────────────────
     public function buyerOrders(Request $request)
     {
