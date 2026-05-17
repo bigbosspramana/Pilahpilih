@@ -56,13 +56,24 @@ class ProductController extends Controller
     // ─── BUYER: Rekomendasi AI ────────────────────────────────
     public function recommendations(Request $request)
     {
+        // Jika tidak login, return produk terbaru saja
+        if (!$request->user()) {
+            $products = Product::with('tags', 'seller')
+                ->available()
+                ->fresh()
+                ->latest()
+                ->take(10)
+                ->get()
+                ->toArray();
+
+            return response()->json(['recommendations' => $products]);
+        }
+
         $user = $request->user();
 
         $recommendations = CacheService::getRecommendations($user->id, function () use ($user) {
-            // Ambil preferensi buyer
             $preferences = $user->preferences->pluck('value')->toArray();
 
-            // Ambil tag dari produk yang sering dilihat
             $viewedProductIds = $user->interactionLogs()
                 ->where('type', 'view')
                 ->latest()
@@ -73,10 +84,19 @@ class ProductController extends Controller
                 ->pluck('tag')
                 ->toArray();
 
-            // Gabungkan preferensi + tag yang dilihat
             $allTags = array_unique(array_merge($preferences, $viewedTags));
 
-            // Cari produk yang cocok
+            // Jika tidak ada preferensi/tags, return produk terbaru
+            if (empty($allTags)) {
+                return Product::with('tags', 'seller')
+                    ->available()
+                    ->fresh()
+                    ->latest()
+                    ->take(10)
+                    ->get()
+                    ->toArray();
+            }
+
             return Product::with('tags', 'seller')
                 ->available()
                 ->fresh()
@@ -84,7 +104,8 @@ class ProductController extends Controller
                     $q->whereIn('tag', $allTags);
                 })
                 ->take(10)
-                ->get();
+                ->get()
+                ->toArray();
         });
 
         return response()->json(['recommendations' => $recommendations]);
