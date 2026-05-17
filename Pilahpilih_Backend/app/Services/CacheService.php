@@ -6,19 +6,20 @@ use Illuminate\Support\Facades\Cache;
 
 class CacheService
 {
-    // Cache rekomendasi AI per user — expire 10 menit
-    public static function getRecommendations(string $userId, callable $callback)
+    public static function getRecommendations(int $userId, callable $callback)
     {
-        return Cache::remember("recommendations_{$userId}", 600, $callback);
+        return Cache::remember("recommendations_{$userId}", 600, function () use ($callback) {
+            return $callback()->toArray(); // ← convert ke array
+        });
     }
 
-    // Cache list produk — expire 5 menit
     public static function getProducts(string $key, callable $callback)
     {
-        return Cache::remember("products_{$key}", 300, $callback);
+        return Cache::remember("products_{$key}", 300, function () use ($callback) {
+            return $callback()->toArray(); // ← convert ke array
+        });
     }
 
-    // Hapus cache produk saat ada update
     public static function clearProducts(): void
     {
         Cache::forget('products_all');
@@ -30,8 +31,7 @@ class CacheService
         Cache::forget('products_spice');
     }
 
-    // Hapus cache rekomendasi user tertentu
-    public static function clearRecommendations(string $userId): void
+    public static function clearRecommendations(int $userId): void
     {
         Cache::forget("recommendations_{$userId}");
     }
