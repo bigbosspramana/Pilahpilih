@@ -16,6 +16,7 @@ Route::post('/login',    [AuthController::class, 'login']);
 
 // Lihat produk & review — bisa diakses tanpa login
 Route::get('/products',                    [ProductController::class, 'index']);
+Route::get('/products/recommendations', [ProductController::class, 'recommendations']);
 Route::get('/products/{id}',               [ProductController::class, 'show']);
 Route::get('/products/{id}/reviews',       [ReviewController::class, 'productReviews']);
 
@@ -28,8 +29,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/profile',             [AuthController::class, 'updateProfile']);
     Route::post('/fcm-token',           [AuthController::class, 'updateFcmToken']);
 
-    // Products
-    Route::get('/products/recommendations', [ProductController::class, 'recommendations']);
 
     // Seller only
     Route::middleware('role:seller')->group(function () {
