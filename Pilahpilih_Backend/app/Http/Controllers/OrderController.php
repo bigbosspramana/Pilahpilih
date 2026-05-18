@@ -15,22 +15,27 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'cart_ids'         => 'required|array|min:1',
+            'cart_ids.*'       => 'integer|exists:carts,id',
             'payment_method'   => 'required|in:qris,bank_transfer,cod',
             'delivery_address' => 'nullable|string',
         ]);
 
-        $user      = $request->user();
+        $user = $request->user();
+
+        // Ambil hanya cart item yang dipilih buyer
         $cartItems = Cart::with('product.seller')
             ->where('user_id', $user->id)
+            ->whereIn('id', $request->cart_ids)  // ← filter berdasarkan pilihan
             ->get();
 
         if ($cartItems->isEmpty()) {
             return response()->json([
-                'message' => 'Keranjang kosong',
+                'message' => 'Tidak ada item yang dipilih',
             ], 422);
         }
 
-        // Cek stok semua item
+        // Cek stok semua item yang dipilih
         foreach ($cartItems as $item) {
             if ($item->product->stock < $item->quantity) {
                 return response()->json([
@@ -52,8 +57,10 @@ class OrderController extends Controller
             $request->delivery_address
         );
 
-        // Kosongkan keranjang setelah checkout
-        Cart::where('user_id', $user->id)->delete();
+        // Hapus HANYA item yang di-checkout, bukan semua cart
+        Cart::where('user_id', $user->id)
+            ->whereIn('id', $request->cart_ids)
+            ->delete();
 
         return response()->json([
             'message' => 'Pesanan berhasil dibuat',
