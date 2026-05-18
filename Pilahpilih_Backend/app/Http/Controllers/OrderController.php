@@ -4,15 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Order;
-use App\Models\OrderItem;
-use App\Models\InteractionLog;
+use App\Models\Product;
+use App\Services\CheckoutService;
 use App\Services\NotificationService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
-    // ─── BUYER: Buat pesanan dari keranjang ───────────────────
+    // ─── BUYER: Checkout dari Cart ────────────────────────────
     public function store(Request $request)
     {
         $request->validate([
@@ -20,9 +19,8 @@ class OrderController extends Controller
             'delivery_address' => 'nullable|string',
         ]);
 
-        $user = $request->user();
-
-        $cartItems = Cart::with('product')
+        $user      = $request->user();
+        $cartItems = Cart::with('product.seller')
             ->where('user_id', $user->id)
             ->get();
 
@@ -32,65 +30,30 @@ class OrderController extends Controller
             ], 422);
         }
 
-        // Hitung total
-        $subtotal       = $cartItems->sum(fn($i) => $i->product->price_per_kg * $i->quantity);
-        $serviceFee     = 2000;
-        $shippingFee    = 0; // bisa dihitung berdasarkan jarak nanti
-        $totalAmount    = $subtotal + $serviceFee + $shippingFee;
-
-        // Buat order
-        $order = Order::create([
-            'id'               => 'ORD' . strtoupper(Str::random(7)),
-            'buyer_id'         => $user->id,
-            'invoice_number'   => 'INV-' . now()->format('Ymd') . '-' . strtoupper(Str::random(4)),
-            'total_amount'     => $totalAmount,
-            'service_fee'      => $serviceFee,
-            'shipping_fee'     => $shippingFee,
-            'status'           => 'pending',
-            'payment_method'   => $request->payment_method,
-            'delivery_address' => $request->delivery_address,
-        ]);
-
-        // Buat order items + catat interaksi purchase
+        // Cek stok semua item
         foreach ($cartItems as $item) {
-            OrderItem::create([
-                'order_id'          => $order->id,
-                'product_id'        => $item->product_id,
-                'quantity'          => $item->quantity,
-                'price_at_purchase' => $item->product->price_per_kg,
-                'subtotal'          => $item->product->price_per_kg * $item->quantity,
-            ]);
-
-            // Kurangi stok
-            $item->product->decrement('stock', $item->quantity);
-
-            // Catat interaksi purchase
-            InteractionLog::create([
-                'user_id'    => $user->id,
-                'product_id' => $item->product_id,
-                'type'       => 'purchase',
-            ]);
-
-            // Notifikasi ke seller
-            $seller = $item->product->seller;
-            NotificationService::send(
-                $seller,
-                'Pesanan Baru Masuk!',
-                "Ada pesanan baru untuk produk {$item->product->name}.",
-                'order'
-            );
+            if ($item->product->stock < $item->quantity) {
+                return response()->json([
+                    'message' => "Stok {$item->product->name} tidak mencukupi",
+                ], 422);
+            }
         }
 
-        // Kosongkan keranjang
-        Cart::where('user_id', $user->id)->delete();
+        // Format items untuk CheckoutService
+        $items = $cartItems->map(fn($item) => [
+            'product'  => $item->product,
+            'quantity' => $item->quantity,
+        ])->toArray();
 
-        // Notifikasi ke buyer
-        NotificationService::send(
+        $order = CheckoutService::createOrder(
             $user,
-            'Pesanan Berhasil Dibuat',
-            "Pesanan #{$order->invoice_number} sedang diproses.",
-            'order'
+            $items,
+            $request->payment_method,
+            $request->delivery_address
         );
+
+        // Kosongkan keranjang setelah checkout
+        Cart::where('user_id', $user->id)->delete();
 
         return response()->json([
             'message' => 'Pesanan berhasil dibuat',
@@ -98,7 +61,7 @@ class OrderController extends Controller
         ], 201);
     }
 
-    // ─── BUYER: Beli langsung dari halaman produk ─────────────
+    // ─── BUYER: Beli Langsung (Buy Now) ──────────────────────
     public function buyNow(Request $request)
     {
         $request->validate([
@@ -108,66 +71,19 @@ class OrderController extends Controller
             'delivery_address' => 'nullable|string',
         ]);
 
-        $user    = $request->user();
-        $product = Product::findOrFail($request->product_id);
+        $product = Product::with('seller')->findOrFail($request->product_id);
 
-        // Cek stok
         if ($product->stock < $request->quantity) {
             return response()->json([
                 'message' => 'Stok tidak mencukupi',
             ], 422);
         }
 
-        $subtotal    = $product->price_per_kg * $request->quantity;
-        $serviceFee  = 2000;
-        $shippingFee = 0;
-        $totalAmount = $subtotal + $serviceFee + $shippingFee;
-
-        // Buat order langsung tanpa cart
-        $order = Order::create([
-            'buyer_id'         => $user->id,
-            'invoice_number'   => 'INV-' . now()->format('Ymd') . '-' . strtoupper(Str::random(4)),
-            'total_amount'     => $totalAmount,
-            'service_fee'      => $serviceFee,
-            'shipping_fee'     => $shippingFee,
-            'status'           => 'pending',
-            'payment_method'   => $request->payment_method,
-            'delivery_address' => $request->delivery_address,
-        ]);
-
-        // Buat order item
-        OrderItem::create([
-            'order_id'          => $order->id,
-            'product_id'        => $product->id,
-            'quantity'          => $request->quantity,
-            'price_at_purchase' => $product->price_per_kg,
-            'subtotal'          => $subtotal,
-        ]);
-
-        // Kurangi stok
-        $product->decrement('stock', $request->quantity);
-
-        // Catat interaksi purchase
-        InteractionLog::create([
-            'user_id'    => $user->id,
-            'product_id' => $product->id,
-            'type'       => 'purchase',
-        ]);
-
-        // Notifikasi ke seller
-        NotificationService::send(
-            $product->seller,
-            'Pesanan Baru Masuk!',
-            "Ada pesanan baru untuk produk {$product->name}.",
-            'order'
-        );
-
-        // Notifikasi ke buyer
-        NotificationService::send(
-            $user,
-            'Pesanan Berhasil Dibuat',
-            "Pesanan #{$order->invoice_number} sedang diproses.",
-            'order'
+        $order = CheckoutService::createOrder(
+            $request->user(),
+            [['product' => $product, 'quantity' => $request->quantity]],
+            $request->payment_method,
+            $request->delivery_address
         );
 
         return response()->json([
@@ -229,7 +145,6 @@ class OrderController extends Controller
 
         $order->update(['status' => $request->status]);
 
-        // Notifikasi ke buyer
         $statusLabel = [
             'processing' => 'sedang diproses',
             'shipped'    => 'sedang dikirim',
