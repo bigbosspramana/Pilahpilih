@@ -58,7 +58,7 @@ class MessageController extends Controller
     public function send(Request $request)
     {
         $request->validate([
-            'receiver_id' => 'required|string|exists:users,id',
+            'receiver_id' => 'required|integer|exists:users,id',
             'body'        => 'required_without:media|nullable|string',
             'media'       => 'required_without:body|nullable|file|mimes:jpg,jpeg,png,gif,mp4,mov|max:51200',
         ]);
