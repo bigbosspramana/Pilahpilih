@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styles from "./regist_screen.module.css";
-import InputField from "@/views/components/Field/field";
 import Button from "@/views/components/Button/button";
 import MainLayout from "@/views/layouts/MainLayout/main_layout";
 import IconBuyer from "@/assets/icons/buyer.svg";
@@ -8,7 +7,7 @@ import IconSupplier from "@/assets/icons/supplier.svg";
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
-    role: "",
+    role: "", // diisi 'buyer' atau 'seller' berdasarkan API
     fullName: "",
     email: "",
     phone: "",
@@ -16,20 +15,63 @@ export default function RegisterPage() {
     confirmPassword: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validasi sederhana
+    // Validasi Sederhana di Frontend
     if (!formData.role) {
       alert("Silakan pilih peran Anda terlebih dahulu!");
       return;
     }
+    if (formData.password !== formData.confirmPassword) {
+      alert("Kata sandi dan konfirmasi kata sandi tidak cocok!");
+      return;
+    }
 
-    console.log("Register Data:", formData);
+    setLoading(true);
+
+    try {
+      // Menembak sesuai domain lokal Laragon Anda
+      const response = await fetch("http://127.0.0.1:8000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json", // Wajib berdasarkan dokumentasi API [cite: 58]
+        },
+        // BODY PARAMETERS disesuaikan 100% dengan dokumen API PilahPilih [cite: 60, 61, 62, 63, 64, 66, 67]
+        body: JSON.stringify({
+          full_name: formData.fullName, // Menggunakan full_name 
+          email: formData.email,        // [cite: 82]
+          password: formData.password,  // [cite: 84]
+          password_confirmation: formData.confirmPassword,
+          phone: formData.phone,        // [cite: 86]
+          role: formData.role,          // 'buyer' atau 'seller' [cite: 97]
+          address: "Alamat belum diatur", // Wajib diisi string berdasarkan API 
+          account_type: "personal",     // 'personal' atau 'business' [cite: 103, 104]
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Gagal melakukan registrasi");
+      }
+
+      console.log("Registrasi Berhasil:", result);
+      alert("Akun Anda berhasil didaftarkan!");
+
+    } catch (error: any) {
+      console.error("Error Registrasi:", error);
+      alert(error.message || "Terjadi kesalahan koneksi ke server.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -51,20 +93,21 @@ export default function RegisterPage() {
         <div className={styles.roleGroup}>
           <label className={styles.label}>DAFTAR SEBAGAI</label>
           <div className={styles.roleContainer}>
-            {/* Opsi 1: Pembeli / Konsumen */}
+            {/* Opsi Pembeli disesuaikan nilainya ke 'buyer' sesuai API [cite: 98] */}
             <button
               type="button"
-              className={`${styles.roleCard} ${formData.role === "pembeli" ? styles.roleActive : ""}`}
-              onClick={() => handleChange("role", "pembeli")}
+              className={`${styles.roleCard} ${formData.role === "buyer" ? styles.roleActive : ""}`}
+              onClick={() => handleChange("role", "buyer")}
             >
               <img src={IconBuyer} alt="" className={styles.iconButton} />
               Pembeli
             </button>
 
+            {/* Opsi Mitra disesuaikan nilainya ke 'seller' sesuai API [cite: 99] */}
             <button
               type="button"
-              className={`${styles.roleCard} ${formData.role === "mitra" ? styles.roleActive : ""}`}
-              onClick={() => handleChange("role", "mitra")}
+              className={`${styles.roleCard} ${formData.role === "seller" ? styles.roleActive : ""}`}
+              onClick={() => handleChange("role", "seller")}
             >
               <img src={IconSupplier} alt="" className={styles.iconButton} />
               Mitra (Petani)
@@ -72,48 +115,64 @@ export default function RegisterPage() {
           </div>
         </div>
 
-        <InputField
-          label="NAMA LENGKAP"
-          placeholder="Masukkan nama lengkap Anda"
-          //   value={formData.fullName}
-          //   onChange={(e) => handleChange('fullName', e.target.value)}
-        />
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "16px" }}>
+          <label className={styles.label}>NAMA LENGKAP</label>
+          <input
+            type="text"
+            placeholder="Masukkan nama lengkap Anda"
+            value={formData.fullName}
+            onChange={(e) => handleChange("fullName", e.target.value)}
+            style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "14px" }}
+          />
+        </div>
 
-        <InputField
-          label="EMAIL"
-          type="email"
-          placeholder="Masukkan email Anda"
-          //   value={formData.email}
-          //   onChange={(e) => handleChange('email', e.target.value)}
-        />
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "16px" }}>
+          <label className={styles.label}>EMAIL</label>
+          <input
+            type="email"
+            placeholder="Masukkan email Anda"
+            value={formData.email}
+            onChange={(e) => handleChange("email", e.target.value)}
+            style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "14px" }}
+          />
+        </div>
 
-        <InputField
-          label="NOMOR TELEPON"
-          type="number"
-          placeholder="Masukkan nomor telepon Anda"
-          //   value={formData.phone}
-          //   onChange={(e) => handleChange('phone', e.target.value)}
-        />
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "16px" }}>
+          <label className={styles.label}>NOMOR TELEPON</label>
+          <input
+            type="text"
+            placeholder="Masukkan nomor telepon Anda"
+            value={formData.phone}
+            onChange={(e) => handleChange("phone", e.target.value)}
+            style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "14px" }}
+          />
+        </div>
 
-        <InputField
-          label="KATA SANDI"
-          type="password"
-          placeholder="Buat kata sandi Anda"
-          //   value={formData.password}
-          //   onChange={(e) => handleChange('password', e.target.value)}
-        />
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "16px" }}>
+          <label className={styles.label}>KATA SANDI</label>
+          <input
+            type="password"
+            placeholder="Buat kata sandi Anda (Min. 8 karakter)"
+            value={formData.password}
+            onChange={(e) => handleChange("password", e.target.value)}
+            style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "14px" }}
+          />
+        </div>
 
-        <InputField
-          label="KONFIRMASI KATA SANDI"
-          type="password"
-          placeholder="Ulangi kata sandi Anda"
-          //   value={formData.confirmPassword}
-          //   onChange={(e) => handleChange('confirmPassword', e.target.value)}
-        />
+        <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "24px" }}>
+          <label className={styles.label}>KONFIRMASI KATA SANDI</label>
+          <input
+            type="password"
+            placeholder="Ulangi kata sandi Anda"
+            value={formData.confirmPassword}
+            onChange={(e) => handleChange("confirmPassword", e.target.value)}
+            style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "14px" }}
+          />
+        </div>
 
         <div className={styles.buttonWrapper}>
-          <Button type="submit" variant="primary" className={styles.fullButton}>
-            Daftar Sekarang
+          <Button type="submit" variant="primary" className={styles.fullButton} disabled={loading}>
+            {loading ? "Sedang Memproses..." : "Daftar Sekarang"}
           </Button>
         </div>
       </form>
