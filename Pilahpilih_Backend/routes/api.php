@@ -70,4 +70,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/preferences',          [BuyerPreferenceController::class, 'index']);
     Route::post('/preferences',         [BuyerPreferenceController::class, 'store']);
     Route::delete('/preferences/{id}',  [BuyerPreferenceController::class, 'destroy']);
+
 });
