@@ -32,6 +32,7 @@ header {
 .backButton {
   cursor: pointer;
   padding: 10px;
+  margin-right: 10px;
   z-index: 2;
 }
 
@@ -42,7 +43,6 @@ header {
   flex: 1;
   width: 100%;
 }
-
 .rightActions {
   display: flex;
   align-items: center;
