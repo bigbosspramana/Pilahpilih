@@ -66,7 +66,7 @@ export default function RegisterPage() {
       }
 
       console.log("Registrasi Berhasil:", result);
-      alert("Akun Anda berhasil didaftarkan!");
+      alert("Akun Anda berhasil terdaftar!");
 
       navigate("/");
 
