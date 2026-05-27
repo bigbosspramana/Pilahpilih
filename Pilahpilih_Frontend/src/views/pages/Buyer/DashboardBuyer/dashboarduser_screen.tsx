@@ -32,7 +32,7 @@ const PlusIcon = () => (
 );
 
 // --- Komponen Utama ---
-export default function Home() {
+export default function DashboardUser() {
   // Konten untuk sebelah kanan Header (Search Bar & Cart)
   const HeaderRightContent = (
     <div className={styles.headerActions}>
