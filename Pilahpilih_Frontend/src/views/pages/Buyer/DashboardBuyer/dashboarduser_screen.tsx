@@ -1,6 +1,7 @@
 import React from "react";
-import MainLayout from "@/views/layouts/MainLayout/main_layout"; // Sesuaikan path import kamu
+import MainLayout from "@/views/layouts/MainLayout/main_layout"; 
 import styles from "./dashboarduser_screen.module.css";
+import Button from "@/views/components/Button/button"; // Impor komponen Button untuk logout
 
 // --- Kumpulan Komponen Ikon ---
 const SearchIcon = () => (
@@ -31,11 +32,24 @@ const PlusIcon = () => (
   </svg>
 );
 
+// ✅ 1. DEFINISIKAN INTERFACE PROPS AGAR TERHUBUNG DENGAN LOGIN SCREEN
+interface BuyerDashboardProps {
+  userName: string | null;
+  products: any[];
+  onLogout: () => void;
+}
+
 // --- Komponen Utama ---
-export default function Home() {
-  // Konten untuk sebelah kanan Header (Search Bar & Cart)
+export default function BuyerDashboard({ userName, products, onLogout }: BuyerDashboardProps) {
+  
+  // Aksi penambahan keranjang belanja (POST api/cart)
+  const addToCart = (productId: number) => {
+    alert(`Produk dengan ID ${productId} berhasil ditambahkan ke keranjang!`);
+  };
+
+  // Konten untuk sebelah kanan Header (Search Bar, Cart, & Tombol Keluar)
   const HeaderRightContent = (
-    <div className={styles.headerActions}>
+    <div className={styles.headerActions} style={{ display: "flex", alignItems: "center", gap: "16px" }}>
       <div className={styles.searchBar}>
         <SearchIcon />
         <input type="text" placeholder="Cari hasil panen..." />
@@ -43,6 +57,10 @@ export default function Home() {
       <button className={styles.iconBtn} aria-label="Keranjang">
         <CartIcon />
       </button>
+      {/* ✅ 2. SISIPKAN TOMBOL LOGOUT DI HEADER */}
+      <Button variant="outline" onClick={onLogout}>
+        Keluar
+      </Button>
     </div>
   );
 
@@ -59,7 +77,8 @@ export default function Home() {
         {/* Hero Section */}
         <section className={styles.hero}>
           <div className={styles.heroBadge}>MISI KAMI</div>
-          <h2>Menyelamatkan Pangan,<br />Memberdayakan UMKM.</h2>
+          {/* ✅ 3. DUKUNG SAPAAN DINAMIS NAMA USER */}
+          <h2>Halo {userName || "Pelanggan"},<br />Menyelamatkan Pangan, Memberdayakan UMKM.</h2>
           <p>Dapatkan bahan baku premium dengan harga terjangkau sambil membantu mengurangi limbah makanan di Indonesia.</p>
         </section>
 
@@ -100,57 +119,46 @@ export default function Home() {
               <SparklesIcon />
             </div>
             <div>
-              <h3>Rekomendasi AI Untuk Usahamu</h3>
-              <p>Berdasarkan profil usaha: Restoran Pasta & Italia</p>
+              <h3>Katalog Produk Pilihan</h3>
+              <p>Menampilkan komoditas segar langsung dari mitra tani kami</p>
             </div>
           </div>
 
           <div className={styles.productList}>
-            {/* Produk 1 */}
-            <div className={styles.productCard}>
-              <span className={`${styles.productBadge} ${styles.badgeDark}`}>RESCUED VALUE</span>
-              <img 
-                src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80" 
-                alt="Tomat Roma Grade B+" 
-                className={styles.productImg} 
-              />
-              <div className={styles.productInfo}>
-                <h4>Tomat Roma Grade B+</h4>
-                <p>Sangat cocok untuk saus pasta artisan Anda. Kematangan sempurna.</p>
-                <div className={styles.priceRow}>
-                  <div className={styles.priceContainer}>
-                    <span className={styles.price}>Rp 12.500</span>
-                    <span className={styles.priceStrike}>Rp 18.000</span>
+            {/* ✅ 4. LAKUKAN MAPPING DATA DARI API BACKEND LARAVEL */}
+            {products.length === 0 ? (
+              <p style={{ color: "#999", padding: "16px" }}>Sedang memuat etalase produk pangan segar...</p>
+            ) : (
+              products.map((product) => (
+                <div key={product.id} className={styles.productCard}>
+                  <span className={`${styles.productBadge} ${styles.badgeDark}`}>
+                    {product.imperfect_label === "slightly_imperfect" ? "RESCUED VALUE" : "FRESH HARVEST"}
+                  </span>
+                  <img 
+                    src={product.photo || "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80"} 
+                    alt={product.name} 
+                    className={styles.productImg} 
+                  />
+                  <div className={styles.productInfo}>
+                    <h4>{product.name}</h4>
+                    <p>{product.description || "Bahan pangan segar berkualitas tinggi pilihan UMKM."}</p>
+                    <div className={styles.priceRow}>
+                      <div className={styles.priceContainer}>
+                        <span className={styles.price}>Rp {parseFloat(product.price_per_kg).toLocaleString("id-ID")}</span>
+                      </div>
+                      {/* ✅ 5. HUBUNGKAN TOMBOL ADD TO CART KE LOGIKA KENDALI */}
+                      <button 
+                        className={styles.addBtn} 
+                        aria-label="Tambah ke keranjang"
+                        onClick={() => addToCart(product.id)}
+                      >
+                        <PlusIcon />
+                      </button>
+                    </div>
                   </div>
-                  <button className={styles.addBtn} aria-label="Tambah">
-                    <PlusIcon />
-                  </button>
                 </div>
-              </div>
-            </div>
-
-            {/* Produk 2 */}
-            <div className={styles.productCard}>
-              <span className={`${styles.productBadge} ${styles.badgeLight}`}>FRESH HARVEST</span>
-              <img 
-                src="https://images.unsplash.com/photo-1615486171448-4aff1c11e389?auto=format&fit=crop&w=600&q=80" 
-                alt="Basil Genovese Pack" 
-                className={styles.productImg} 
-              />
-              <div className={styles.productInfo}>
-                <h4>Basil Genovese Pack</h4>
-                <p>Stok melimpah dari petani Bogor. Aroma kuat untuk pesto.</p>
-                <div className={styles.priceRow}>
-                  <div className={styles.priceContainer}>
-                    <span className={styles.price}>Rp 8.200</span>
-                  </div>
-                  <button className={styles.addBtn} aria-label="Tambah">
-                    <PlusIcon />
-                  </button>
-                </div>
-              </div>
-            </div>
-
+              ))
+            )}
           </div>
         </section>
 

@@ -15,13 +15,13 @@ export default function App() {
     <>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="/regist" element={<RegisterPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
         {/* ============ */}
         {/*  RUTE BUYER  */}
         {/* ============ */}
 
-        <Route path="/dashboard-user" element={<DashboardUserPage />} />
+        {/* <Route path="/dashboard" element={<DashboardUserPage />} /> */}
         
 
         {/* <Route element={<NavbarLayout />}>

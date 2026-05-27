@@ -1,0 +1,20 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Sisi kanan header */
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Responsivitas untuk kartu statistik */
+@media (max-width: 768px) {
+  div[style*="display: flex"] {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+}
