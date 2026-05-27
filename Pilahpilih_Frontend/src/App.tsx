@@ -5,6 +5,8 @@ import RegisterPage from './views/pages/Auth/Register/regist_screen';
 
 import CatalogUser from './views/pages/Buyer/CatalogBuyer/cataloguser_screen';
 import DashboardUser from './views/pages/Buyer/DashboardBuyer/dashboarduser_screen';
+import ProductDetailUser from './views/pages/Buyer/ProductDetailBuyer/detailproductuser_screen';
+// import ProductDetailUser from './views/pages/Buyer/ProductDetailBuyer/detailproductuser_screen';
 
 export default function App() {
   const isLoading = false;
@@ -25,6 +27,7 @@ export default function App() {
 
         <Route path="/dashboard-user" element={<DashboardUser />} />
         <Route path="/catalog-user" element={<CatalogUser />} />
+        <Route path="/detail-product-user" element={<ProductDetailUser />} />
 
         {/* <Route element={<NavbarLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />

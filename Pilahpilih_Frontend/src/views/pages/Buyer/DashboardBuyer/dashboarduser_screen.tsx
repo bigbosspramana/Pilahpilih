@@ -49,7 +49,7 @@ export default function BuyerDashboard({ userName, products, onLogout }: BuyerDa
 
   // Konten untuk sebelah kanan Header (Search Bar, Cart, & Tombol Keluar)
   const HeaderRightContent = (
-    <div className={styles.headerActions} style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+    <div className={styles.headerActions}>
       <div className={styles.searchBar}>
         <SearchIcon />
         <input type="text" placeholder="Cari hasil panen..." />
@@ -57,10 +57,10 @@ export default function BuyerDashboard({ userName, products, onLogout }: BuyerDa
       <button className={styles.iconBtn} aria-label="Keranjang">
         <CartIcon />
       </button>
-      {/* ✅ 2. SISIPKAN TOMBOL LOGOUT DI HEADER */}
+      {/* ✅ 2. SISIPKAN TOMBOL LOGOUT DI HEADER
       <Button variant="outline" onClick={onLogout}>
         Keluar
-      </Button>
+      </Button> */}
     </div>
   );
 

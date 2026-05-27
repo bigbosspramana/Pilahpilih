@@ -102,7 +102,7 @@ export default function CatalogUser() {
 
   return (
     <MainLayout
-      title="PilahPilih"
+      title="Sayuran"
       alignLeft={true}
       hideBackButton={false}
       noShadow={false}
