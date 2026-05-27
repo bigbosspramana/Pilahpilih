@@ -17,7 +17,7 @@ export default function App() {
     <>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="/regist" element={<RegisterPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
         {/* ============ */}
         {/*  RUTE BUYER  */}
@@ -25,7 +25,6 @@ export default function App() {
 
         <Route path="/dashboard-user" element={<DashboardUser />} />
         <Route path="/catalog-user" element={<CatalogUser />} />
-        
 
         {/* <Route element={<NavbarLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
