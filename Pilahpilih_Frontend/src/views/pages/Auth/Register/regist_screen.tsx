@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./regist_screen.module.css";
+import { useNavigate } from "react-router-dom";
 import Button from "@/views/components/Button/button";
 import MainLayout from "@/views/layouts/MainLayout/main_layout";
 import InputField from "@/views/components/Field/field"; //  Gunakan kembali komponen ini
@@ -7,6 +8,8 @@ import IconBuyer from "@/assets/icons/buyer.svg";
 import IconSupplier from "@/assets/icons/supplier.svg";
 
 export default function RegisterPage() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     role: "", 
     fullName: "",
@@ -64,6 +67,8 @@ export default function RegisterPage() {
 
       console.log("Registrasi Berhasil:", result);
       alert("Akun Anda berhasil didaftarkan!");
+
+      navigate("/");
 
     } catch (error: any) {
       console.error("Error Registrasi:", error);
@@ -170,7 +175,7 @@ export default function RegisterPage() {
 
       <p className={styles.footerText}>
         Sudah memiliki akun?{" "}
-        <a href="/login" className={styles.link}>
+        <a href="/" className={styles.link}>
           Masuk
         </a>
       </p>
