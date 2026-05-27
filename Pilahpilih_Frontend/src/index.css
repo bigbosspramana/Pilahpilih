@@ -3,59 +3,78 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Nunito';
-  src: url('./assets/fonts/Nunito-Bold.ttf') format('truetype');
+  font-family: "Nunito";
+  src: url("./assets/fonts/Nunito-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Inter-Bold';
-  src: url('./assets/fonts/Inter_24pt-Bold.ttf') format('truetype');
+  font-family: "Nunito-Bold";
+  src: url("./assets/fonts/Nunito-Bold.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('./assets/fonts/Inter_18pt-Regular.ttf') format('truetype');
+  font-family: "Inter-Bold";
+  src: url("./assets/fonts/Inter_24pt-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter_18pt-Regular.ttf") format("truetype");
 }
 
 :root {
   --primary-color: #4b7942;
   --secondary-color: #bcf0ae;
-  --third-color: #065F46;
+  --third-color: #065f46;
   --text-primary: #000;
   --text-secondary: #36632f;
   --text-contrast: #fff;
   --bg-primary: #f8faf6;
   --bg-secondary: #fff;
-  --button: linear-gradient(to right bottom, var(--text-secondary) 0%, var(--primary-color) 100%);
-
-  font: 18px/145%;
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg-primary);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
+  --button: linear-gradient(
+    to right bottom,
+    var(--text-secondary) 0%,
+    var(--primary-color) 100%
+  );
   /* @media (max-width: 1024px) {
     font-size: 16px;
   } */
 }
 
+#root {
+  width: 100%;
+  max-width: 640px;
+  height: 100%;
+  overflow: hidden;
+  background-color: #b6b6b6;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
 * {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 body {
   margin: 0;
+  padding: 0;
+  background-color: #fff; 
+  display: flex;
+  justify-content: center; 
+  min-height: 100vh;
 }
 
 h1 {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: bold;
   font-size: 20px;
 }

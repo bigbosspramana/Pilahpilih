@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import LoginPage from './views/pages/Login/login_screen';
-import RegisterPage from './views/pages/Register/regist_screen';
-import DashboardPage from './views/dashboard_index';
+import LoginPage from './views/pages/Auth/Login/login_screen';
+import RegisterPage from './views/pages/Auth/Register/regist_screen';
+import DashboardUserPage from './views/pages/Buyer/DashboardBuyer/dashboarduser_screen';
 
 export default function App() {
   const isLoading = false;
@@ -14,13 +14,16 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/regist" element={<RegisterPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
 
-        {/* ======================================= */}
-        {/* RUTE DENGAN NAVBAR KHUSUS USER          */}
-        {/* ======================================= */}
+        {/* ============ */}
+        {/*  RUTE BUYER  */}
+        {/* ============ */}
+
+        <Route path="/dashboard-user" element={<DashboardUserPage />} />
+        
+
         {/* <Route element={<NavbarLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/home" element={<Dashboard />} />

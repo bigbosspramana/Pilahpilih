@@ -39,9 +39,15 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
   width: 100%;
 }
 
+.rightActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 .headerLeft .secondHeader {
   justify-content: flex-start;
   padding: 0 7%;
@@ -50,7 +56,6 @@ header {
 
 .headerLeft .contentHeader {
   justify-content: flex-start;
-  padding-left: 1rem;
 }
 
 .contentScreen {
@@ -59,13 +64,15 @@ header {
   padding: 8% 6% 0;
   flex-grow: 1;
   overflow-y: auto;
+  background-color: #fbfbfb;
 
   -webkit-overflow-scrolling: touch;
 }
 
 h1.title {
+  font-family: 'Nunito-Bold', sans-serif;
   color: var(--third-color);
-  font-weight: bold;
+  font-weight: 900;
   font-size: 22px;
   margin: 0;
   text-align: center;
