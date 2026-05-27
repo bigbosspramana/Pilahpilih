@@ -1,9 +1,10 @@
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom"; // Aktifkan jika routing sudah siap
+import { useNavigate } from "react-router-dom"; // ✅ Aktifkan kembali useNavigate
 
 import MainLayout from "@/views/layouts/MainLayout/main_layout";
 import style from "./login_screen.module.css";
 import Button from "@/views/components/Button/button";
+import InputField from "@/views/components/Field/field"; // ✅ Impor kembali komponen kustom
 
 import logoLeaf from "@/assets/icons/logo-white.svg";
 import iconEnvelope from "@/assets/icons/email-gray.svg";
@@ -13,7 +14,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  // const navigate = useNavigate(); // Jalankan router untuk redirect setelah login
+  const navigate = useNavigate(); // ✅ Inisialisasi fungsi navigasi rute
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,13 +31,12 @@ export default function LoginPage() {
       const response = await fetch("http://127.0.0.1:8000/api/login", {
         method: "POST",
         headers: {
-          // "Authorization": `Bearer ${localStorage.getItem("user_token")}`,
           "Content-Type": "application/json",
-          "Accept": "application/json", // Wajib berdasarkan dokumentasi API
+          "Accept": "application/json", // Wajib berdasarkan dokumentasi API [cite: 136, 137, 138]
         },
         body: JSON.stringify({
-          email: email,       // Sesuai dokumentasi body parameter
-          password: password, // Sesuai dokumentasi body parameter
+          email: email,       // Sesuai dokumentasi body parameter [cite: 140]
+          password: password, // Sesuai dokumentasi body parameter [cite: 142]
         }),
       });
 
@@ -48,17 +48,17 @@ export default function LoginPage() {
 
       console.log("Login Berhasil, Token User:", result);
 
-      // 💡 REKOMENDASI: Simpan token autentikasi ke localStorage/sessionStorage untuk fetching endpoint yang terkunci (Auth)
+      // Simpan token autentikasi ke localStorage untuk fetching endpoint yang terkunci (Auth)
       if (result.token) {
-      localStorage.setItem("user_token", result.token);
-      localStorage.setItem("user_role", result.user.role); // 'buyer' atau 'seller' sesuai API
-      localStorage.setItem("user_name", result.user.full_name);
+        localStorage.setItem("user_token", result.token);
+        localStorage.setItem("user_role", result.user.role); // 'buyer' atau 'seller' sesuai API [cite: 96, 99]
+        localStorage.setItem("user_name", result.user.full_name);
       }
 
       alert("Selamat Datang Kembali!");
 
-      // Alihkan langsung ke halaman dashboard utama
-      window.location.href = "/dashboard"; // Ganti dengan path dashboard yang sesuai
+      // ✅ Mengalihkan halaman menggunakan router virtual React, bukan file fisik
+      navigate("/dashboard");
 
 
     } catch (error: any) {
@@ -98,35 +98,26 @@ export default function LoginPage() {
         onSubmit={handleLogin}
         className={style.formContainer}
       >
-        {/* Input Email Standar */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "16px", position: "relative" }}>
-          <label className={style.label}>EMAIL</label>
-          <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
-            <img src={iconEnvelope} alt="" style={{ position: "absolute", left: "12px", width: "20px", height: "20px" }} />
-            <input
-              type="email"
-              placeholder="Masukkan email Anda"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={{ width: "100%", padding: "12px 12px 12px 40px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "14px" }}
-            />
-          </div>
-        </div>
+        {/* ✅ Menggunakan kembali InputField kustom yang bersih dan mendukung ikon */}
+        <InputField
+          label="EMAIL"
+          type="email"
+          placeholder="Masukkan email Anda"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          icon={iconEnvelope}
+          className="mb-4"
+        />
 
-        {/* Input Password Standar */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "16px" }}>
-          <label className={style.label}>KATA SANDI</label>
-          <div style={{ position: "relative", display: "flex", alignItems: "center" }}>
-            <img src={iconLock} alt="" style={{ position: "absolute", left: "12px", width: "20px", height: "20px" }} />
-            <input
-              type="password"
-              placeholder="Masukkan password Anda"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              style={{ width: "100%", padding: "12px 12px 12px 40px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "14px" }}
-            />
-          </div>
-        </div>
+        <InputField
+          label="KATA SANDI"
+          type="password"
+          placeholder="Masukkan password Anda"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          icon={iconLock}
+          className="mb-4"
+        />
 
         {/* Lupa Kata Sandi */}
         <div className={style.forgotPasswordWrapper}>
@@ -144,7 +135,7 @@ export default function LoginPage() {
       {/* Bagian Daftar */}
       <p className={style.Text}>
         Belum punya akun?{" "}
-        <a href="/regist" className={style.registerLink}>
+        <a href="/register" className={style.registerLink}>
           Daftar
         </a>
       </p>
