@@ -14,14 +14,14 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
         {/* ============ */}
         {/*  RUTE BUYER  */}
         {/* ============ */}
 
-        <Route path="/dashboard" element={<DashboardUserPage />} />
+        {/* <Route path="/dashboard" element={<DashboardUserPage />} /> */}
         
 
         {/* <Route element={<NavbarLayout />}>
