@@ -11,7 +11,9 @@ interface MainLayoutProps {
   rightProfile?: string;
   tabsComponent?: ReactNode;
   contentClassName?: string;
+  screenDisplay?: string;
   hideBackButton?: boolean;
+  rightComponent?: ReactNode; // Tambahkan ini
 }
 
 export default function MainLayout({
@@ -22,8 +24,9 @@ export default function MainLayout({
   rightProfile,
   tabsComponent,
   contentClassName = "",
+  screenDisplay = "",
   hideBackButton = true,
-  
+  rightComponent,
 }: MainLayoutProps) {
   const navigate = useNavigate();
 
@@ -31,7 +34,7 @@ export default function MainLayout({
     navigate(-1);
   };
   return (
-    <div className={styles.screen}>
+    <div className={`${styles.screen} ${screenDisplay}`}>
       <header
         className={`
         ${styles.header}
@@ -51,7 +54,7 @@ export default function MainLayout({
           <div className={styles.contentHeader}>
             <h1 className={styles.title}>{title}</h1>
 
-            {/* Jika prop rightProfile diisi, tampilkan gambar profilnya */}
+            {rightComponent}
             {rightProfile && (
               <img
                 src={rightProfile}
