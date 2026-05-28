@@ -1,9 +1,8 @@
 import React from "react";
 import MainLayout from "@/views/layouts/MainLayout/main_layout";
 import styles from "./cataloguser_screen.module.css";
-import IconStar from "@/assets/icons/mini-star.svg";
 import IconFilter from "@/assets/icons/filter.svg";
-import IconCart1 from "@/assets/icons/cart2.svg"
+import ProductCard from "@/views/components/ProductCard/productcard";
 
 interface Product {
   id: string;
@@ -112,9 +111,7 @@ export default function CatalogUser() {
       <div className={styles.container}>
         <div className={styles.topNav}>
           <img src={IconFilter} alt="" />
-          <button className={styles.dropdownButton}>
-            Harga Termurah 
-          </button>
+          <button className={styles.dropdownButton}>Harga Termurah</button>
         </div>
 
         {/* Header */}
@@ -128,63 +125,7 @@ export default function CatalogUser() {
         {/* Product List */}
         <div className={styles.productList}>
           {DUMMY_PRODUCTS.map((product) => (
-            <article key={product.id} className={styles.card}>
-              {/* Image & Badge */}
-              <div className={styles.imageContainer}>
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className={styles.productImage}
-                />
-                <span
-                  className={`${styles.badge} ${
-                    product.badge.type === "organic"
-                      ? styles.badgeOrganic
-                      : styles.badgeGrade
-                  }`}
-                >
-                  {product.badge.text}
-                </span>
-              </div>
-
-              {/* Product Info */}
-              <div className={styles.cardHeader}>
-                <h2 className={styles.productName}>{product.name}</h2>
-                <div className={styles.rating}>
-                  <img src={IconStar} alt="" />
-                  <span>{product.rating}</span>
-                </div>
-              </div>
-
-              <div className={styles.location}>
-                {/* <MapPin size={14} /> */}
-                <span>{product.location}</span>
-              </div>
-
-              {/* Pricing & Action */}
-              <div className={styles.cardFooter}>
-                <div className={styles.priceSection}>
-                  {product.originalPrice && (
-                    <span className={styles.originalPrice}>
-                      {formatRupiah(product.originalPrice)}
-                    </span>
-                  )}
-                  <div>
-                    <span className={styles.currentPrice}>
-                      {formatRupiah(product.currentPrice)}
-                    </span>
-                    <span className={styles.unit}>{product.unit}</span>
-                  </div>
-                </div>
-
-                <button
-                  className={styles.addToCartBtn}
-                  aria-label="Tambah ke keranjang"
-                >
-                  <img src={IconCart1} alt="" />
-                </button>
-              </div>
-            </article>
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </div>

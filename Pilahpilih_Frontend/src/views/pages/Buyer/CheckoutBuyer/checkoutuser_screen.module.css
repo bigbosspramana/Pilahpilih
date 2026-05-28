@@ -1,0 +1,229 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.mobileWrapper {
+  /* max-width: 480px; */
+  margin: 0 auto;
+  /* min-height: 100vh; */
+  position: relative;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1A1A1A;
+}
+
+/* Area konten yang bisa di-scroll */
+.scrollableContent {
+  padding: 0 0 4rem;
+}
+
+/* Header */
+.headerTitle {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #2E5A36;
+  margin: 0 0 0.5rem 0;
+}
+
+.headerSubtitle {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0 2rem 0;
+  line-height: 1.4;
+}
+
+/* Card General */
+.card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+}
+
+/* Titik Bertemu Section */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.iconLocal {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #F3F6F4;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid #3B7B4B;
+}
+
+.inputIcon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+}
+
+.locationInput {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 0.85rem;
+  outline: none;
+  color: #333;
+}
+
+.locationInput::placeholder {
+  color: #999;
+}
+
+/* Ringkasan Produk Section */
+.productList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.productItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.productImg {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.productInfo {
+  flex: 1;
+}
+
+.productName {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.2;
+}
+
+.productDetail {
+  font-size: 0.75rem;
+  color: #666;
+  margin: 0;
+}
+
+.productPrice {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Footer Information */
+.appFooter {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.brandName {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #C3D5C7;
+  letter-spacing: 1px;
+  margin: 0 0 0.5rem 0;
+}
+
+.brandDesc {
+  font-size: 0.7rem;
+  color: #999;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+.paymentContainer {
+  background-color: #FFFFFF;
+  border-top: 5px solid #3B7B4B;
+  padding: 1.25rem 1.5rem;
+  margin: 1rem 0;
+  border-radius: 10px;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.calculationRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.divider {
+  height: 1px;
+  background-color: #E5E7EB;
+  margin: 1rem 0;
+}
+
+.totalLabel {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #4A7C59;
+  letter-spacing: 1px;
+  margin: 0 0 0.25rem 0;
+}
+
+.totalPrice {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1A1A1A;
+  margin: 0 0 1rem 0;
+}
+
+.submitBtn {
+  width: 100%;
+  background-color: #4A7C59;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 0.75rem;
+}
+
+.submitBtn:hover {
+  background-color: #3B7B4B;
+}
+
+.securePayment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #666;
+  letter-spacing: 0.5px;
+}
+
+.lockIcon {
+  width: 10px;
+  height: 10px;
+}
