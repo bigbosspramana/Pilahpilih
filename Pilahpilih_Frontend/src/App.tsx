@@ -6,6 +6,7 @@ import RegisterPage from './views/pages/Auth/Register/regist_screen';
 import CatalogUser from './views/pages/Buyer/CatalogBuyer/cataloguser_screen';
 import DashboardUser from './views/pages/Buyer/DashboardBuyer/dashboarduser_screen';
 import ProductDetailUser from './views/pages/Buyer/ProductDetailBuyer/detailproductuser_screen';
+import CheckoutUser from './views/pages/Buyer/CheckoutBuyer/checkoutuser_screen';
 // import ProductDetailUser from './views/pages/Buyer/ProductDetailBuyer/detailproductuser_screen';
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/dashboard-user" element={<DashboardUser />} />
         <Route path="/catalog-user" element={<CatalogUser />} />
         <Route path="/detail-product-user" element={<ProductDetailUser />} />
+        <Route path="/checkout-user" element={<CheckoutUser />} />
 
         {/* <Route element={<NavbarLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
