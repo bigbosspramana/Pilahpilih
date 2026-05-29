@@ -5,6 +5,9 @@ import MainLayout from "@/views/layouts/MainLayout/main_layout";
 import iconLocation from "@/assets/icons/icon-location-green.svg";
 import iconSearch from "@/assets/icons/icon-search.svg";
 import iconLock from "@/assets/icons/icon-lock.svg";
+import OrderItemRow, {
+  OrderItem,
+} from "@/views/components/OrderItem/orderitem";
 
 const SearchIcon = () => (
   <svg
@@ -39,13 +42,8 @@ const CartIcon = () => (
   </svg>
 );
 
-interface OrderItem {
-  id: string;
-  name: string;
-  imageUrl: string;
-  quantity: number;
-  unit: string;
-  pricePerUnit: number;
+interface OrderSummaryCardProps {
+  orderItems: OrderItem[];
 }
 
 export default function CheckoutUser() {
@@ -101,30 +99,6 @@ export default function CheckoutUser() {
               Satu langkah lagi untuk menyelamatkan hasil panen berkualitas.
             </p>
 
-            {/* Card: Titik Bertemu */}
-            <section className={styles.card}>
-              <div className={styles.sectionHeader}>
-                <img
-                  src={iconLocation}
-                  alt="Location"
-                  className={styles.iconLocal}
-                />
-                <h2 className={styles.sectionTitle}>Titik Bertemu</h2>
-              </div>
-              <div className={styles.inputWrapper}>
-                <img
-                  src={iconSearch}
-                  alt="Search"
-                  className={styles.inputIcon}
-                />
-                <input
-                  type="text"
-                  placeholder="Tentukan tempat bertemu dengan supplier.."
-                  className={styles.locationInput}
-                />
-              </div>
-            </section>
-
             {/* Card: Ringkasan Produk */}
             <section className={styles.card}>
               <div className={styles.sectionHeader}>
@@ -132,23 +106,8 @@ export default function CheckoutUser() {
               </div>
               <div className={styles.productList}>
                 {orderItems.map((item) => (
-                  <div key={item.id} className={styles.productItem}>
-                    <img
-                      src={item.imageUrl}
-                      alt={item.name}
-                      className={styles.productImg}
-                    />
-                    <div className={styles.productInfo}>
-                      <h3 className={styles.productName}>{item.name}</h3>
-                      <p className={styles.productDetail}>
-                        {item.quantity} {item.unit} x{" "}
-                        {formatRupiah(item.pricePerUnit)}
-                      </p>
-                    </div>
-                    <p className={styles.productPrice}>
-                      {formatRupiah(item.quantity * item.pricePerUnit)}
-                    </p>
-                  </div>
+                  // key diletakkan di saat pemanggilan komponen
+                  <OrderItemRow key={item.id} item={item} />
                 ))}
               </div>
             </section>

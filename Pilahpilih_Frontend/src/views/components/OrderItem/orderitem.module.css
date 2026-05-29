@@ -1,0 +1,36 @@
+.productItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.productImg {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.productInfo {
+  flex: 1;
+}
+
+.productName {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.2;
+}
+
+.productDetail {
+  font-size: 0.75rem;
+  color: #666;
+  margin: 0;
+}
+
+.productPrice {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0;
+}
+ 

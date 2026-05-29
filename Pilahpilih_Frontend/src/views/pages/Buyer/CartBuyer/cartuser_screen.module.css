@@ -1,0 +1,129 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  overflow-y: auto;
+  min-height: 100vh;
+  padding-bottom: 40px;
+
+}
+
+.pageHeader {
+  padding-top: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.5px;
+}
+
+.pageSubtitle {
+  font-size: 0.95rem;
+  color: #4B5563;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Impact Banner */
+.impactBanner {
+  background-color: var(--bg-third);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.iconLocal {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.impactText {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #334B38;
+  margin: 0;
+}
+
+.impactBold {
+  font-weight: 700;
+}
+
+/* Seller Section */
+
+
+/* Cart Item Card */
+
+
+/* Fixed Bottom Container */
+.fixedBottom {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  background-color: #FFFFFF;
+  padding: 1.25rem 1.5rem;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+  z-index: 50;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.totalLabel {
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #4B5563;
+}
+
+.totalAmount {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #3B7B4B;
+  margin: 0;
+}
+
+.checkoutBtn {
+  width: 100%;
+  background-color: #4A7C59;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.checkoutBtn:hover {
+  background-color: #3B7B4B;
+}
+
+.arrowIcon {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1);
+}

@@ -31,6 +31,7 @@
   --text-contrast: #fff;
   --bg-primary: #f8faf6;
   --bg-secondary: #fff;
+  --bg-third: #DBE6D2;
   --button: linear-gradient(
     to right bottom,
     var(--text-secondary) 0%,
