@@ -1,0 +1,224 @@
+.orderCard {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+}
+
+/* Card Header (Info & Image) */
+.cardHeader {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.productImg {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.orderInfo {
+  flex: 1;
+}
+
+.orderId {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #4b5563;
+  letter-spacing: 0.5px;
+  margin: 0 0 0.25rem 0;
+}
+
+.orderTitle {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.3;
+}
+
+.orderMeta {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Badge Status */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.badgeDikirIM {
+  background-color: #cde8d2;
+  color: #2e5a36;
+}
+
+.badgeDisiapkan {
+  background-color: #6b7a6e;
+  color: #ffffff;
+}
+
+.statusIcon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+.statusIconWhite {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* Price */
+.priceText {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #2e5a36;
+  margin: 0 0 1.25rem 0;
+}
+
+/* Progress Bar Tracker */
+.progressTracker {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+.lineWrapper {
+  position: absolute;
+  top: 10px; /* Sesuaikan nilai ini agar pas di tengah titik */
+  left: 20px; /* Jarak dari ujung kiri ke tengah dot pertama */
+  right: 20px; /* Jarak dari ujung kanan ke tengah dot terakhir */
+  height: 4px;
+  z-index: 1;
+}
+
+/* Update kedua class garis ini */
+.progressBackgroundLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #e5e7eb;
+  border-radius: 20px;
+}
+
+.progressActiveLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #2e5a36;
+  border-radius: 20px;
+  transition: width 0.3s ease;
+}
+
+/* Pastikan stepContainer memiliki z-index lebih tinggi agar titiknya berada di atas garis */
+.stepContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  z-index: 2;
+}
+
+.stepDot {
+  width: 14px;
+  height: 14px;
+  border-radius: 30px;
+  background-color: #e5e7eb;
+  border: 4px solid #ffffff;
+  box-shadow: 0 0 0 1px #e5e7eb;
+}
+
+.stepDotCompleted {
+  width: 14px;
+  height: 14px;
+  background-color: var(--primary-color);
+  border: 4px solid var(--primary-color);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--primary-color), transparent 60%);
+  border-radius: 30px;
+}
+
+.stepDotCurrent {
+  width: 14px;
+  height: 14px;
+  border-radius: 30px;
+  background-color: var(--primary-color);
+  border: 4px solid var(--primary-color);
+  box-shadow:
+    0 0 0 2px white,
+    0 0 0 4px color-mix(in srgb, var(--primary-color), transparent 60%);
+}
+
+.stepLabel {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--primary-color);
+}
+
+.stepLabelInactive {
+  color: #9ca3af;
+}
+
+/* Action Buttons */
+.buttonGroup {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.actionBtn {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.btnPrimary {
+  background-color: #3b7b4b;
+  color: #ffffff;
+}
+
+.btnSecondary {
+  background-color: #e2e8e4;
+  color: #2e5a36;
+}
+
+.btnIcon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.btnIconWhite {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
