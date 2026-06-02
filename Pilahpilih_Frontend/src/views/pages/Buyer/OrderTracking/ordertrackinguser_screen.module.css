@@ -1,0 +1,300 @@
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: #FAFCFA;
+  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+  color: #1A1A1A;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Card General */
+.card {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+/* --- Card 1: Detail Pengiriman --- */
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.invoiceId {
+  font-size: 0.75rem;
+  color: #6B7280;
+  font-weight: 600;
+}
+
+.courierBox {
+  background-color: #F3F6F4;
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.courierInfo {
+  flex: 1;
+}
+
+.courierRole {
+  font-size: 0.7rem;
+  color: #6B7280;
+  margin: 0 0 0.1rem 0;
+}
+
+.courierName {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.actionBtns {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.iconBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btnChat {
+  background-color: #3B7B4B;
+}
+
+.btnCall {
+  background-color: #CDE8D2;
+}
+
+.iconLocal {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.iconWhite {
+  filter: brightness(0) invert(1);
+}
+
+.addressSection {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.addressIcon {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+}
+
+.addressDetails {
+  flex: 1;
+}
+
+.addressLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #6B7280;
+  margin: 0 0 0.25rem 0;
+}
+
+.addressText {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* --- Card 2: Status Pesanan --- */
+.statusTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Vertical Timeline */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.timelineItem {
+  display: flex;
+  gap: 1.25rem;
+  position: relative;
+  padding-bottom: 1.75rem;
+}
+
+/* Menghilangkan padding bawah pada item terakhir */
+.timelineItem:last-child {
+  padding-bottom: 0;
+}
+
+/* Garis penghubung timeline */
+.timelineItem:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 17px; /* Menyesuaikan ke titik tengah icon */
+  top: 36px;  /* Mulai dari bawah icon */
+  bottom: 0;
+  width: 2px;
+}
+
+.lineActive::before {
+  background-color: #3B7B4B; /* Garis hijau untuk yg sudah dilewati */
+}
+
+.linePending::before {
+  background-color: #CDE8D2; /* Garis hijau muda transparan untuk step selanjutnya */
+}
+
+/* Icon / Node bulat di timeline */
+.nodeIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.nodeCurrent {
+  background-color: #3B7B4B;
+  box-shadow: 0 0 0 4px #E8F2EA;
+}
+
+.nodeCompleted {
+  background-color: #CDE8D2;
+}
+
+.nodePending {
+  background-color: #E5E7EB;
+}
+
+.nodeImg {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.nodeImgDark {
+  filter: brightness(0) saturate(100%) invert(27%) sepia(21%) saturate(1148%) hue-rotate(85deg) brightness(97%) contrast(93%); /* Hijau gelap */
+}
+
+.nodeImgGray {
+  filter: grayscale(100%) opacity(0.5);
+}
+
+/* Konten Timeline */
+.timelineContent {
+  flex: 1;
+  padding-top: 0.1rem;
+}
+
+.stepTitle {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin: 0 0 0.25rem 0;
+}
+
+.stepTitlePending {
+  color: #6B7280;
+}
+
+.stepDesc {
+  font-size: 0.8rem;
+  color: #4B5563;
+  margin: 0 0 0.4rem 0;
+  line-height: 1.4;
+}
+
+.stepDescPending {
+  color: #9CA3AF;
+}
+
+.stepTime {
+  font-size: 0.7rem;
+  color: #9CA3AF;
+  margin: 0;
+}
+
+/* Sustainability Banner */
+.sustainBanner {
+  background-color: #F3F6F4;
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.bannerIconWrapper {
+  background-color: #FFFFFF;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.bannerIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.bannerContent {
+  flex: 1;
+}
+
+.bannerTitle {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #2E5A36;
+  margin: 0 0 0.25rem 0;
+}
+
+.bannerDesc {
+  font-size: 0.75rem;
+  color: #6B7280;
+  margin: 0;
+  line-height: 1.4;
+}
