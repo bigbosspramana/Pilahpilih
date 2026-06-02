@@ -1,0 +1,239 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  overflow-y: auto;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+.card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.cardFooter {
+  background-color: #F0F4EF;
+}
+
+/* Header Order ID */
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.orderLabel {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #4B5563;
+}
+
+.statusBadge {
+  background-color: #D1E7DD;
+  color: #198754;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.orderIdTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0 0 0.25rem 0;
+}
+
+.orderDate {
+  font-size: 0.8rem;
+  color: #6B7280;
+  margin: 0;
+}
+
+/* Estimasi Card */
+.estimasiCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.estimasiInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.iconBox {
+  background-color: #E2ECD9;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconLocal {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.estimasiLabel {
+  font-size: 0.7rem;
+  color: #6B7280;
+  margin: 0 0 0.1rem 0;
+}
+
+.estimasiValue {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.trackBtn {
+  background-color: #3B7B4B;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Produk List */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #2E5A36;
+  margin: 0;
+}
+
+.itemCount {
+  font-size: 0.75rem;
+  color: #6B7280;
+}
+
+/* Alamat / Titik Temu */
+.addressHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.addressHeaderTitle {
+  font-size: 0.9rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.addressDetails {
+  font-size: 0.85rem;
+  color: #4B5563;
+  line-height: 1.5;
+}
+
+.addressName {
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 0.1rem 0;
+}
+
+/* Pembayaran */
+.paymentRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.paymentMethodLabel {
+  font-size: 0.7rem;
+  color: #6B7280;
+  margin: 0 0 0.1rem 0;
+}
+
+.paymentMethodName {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+/* Rincian Footer */
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #4B5563;
+  margin-bottom: 0.5rem;
+}
+
+.summaryVal {
+  font-weight: 700;
+  color: #1A1A1A;
+}
+
+.divider {
+  height: 1px;
+  background-color: #D1D5DB;
+  margin: 1rem 0;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.totalLabel {
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.totalPrice {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #2E5A36;
+  margin: 0;
+}
+
+.btnSecondary {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #3B7B4B;
+  color: #3B7B4B;
+  padding: 0.875rem;
+  border-radius: 12px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+}
+
+.btnPrimary {
+  width: 100%;
+  background-color: #3B7B4B;
+  color: white;
+  border: none;
+  padding: 0.875rem;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
