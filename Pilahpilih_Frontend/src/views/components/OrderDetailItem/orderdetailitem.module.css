@@ -1,0 +1,66 @@
+.productItem {
+  margin-bottom: 1.25rem;
+}
+
+.productMain {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.productImg {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.productDetails {
+  flex: 1;
+}
+
+.productTitleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.25rem;
+}
+
+.productName {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.productPrice {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #2E5A36;
+}
+
+.productVariant {
+  font-size: 0.75rem;
+  color: #6B7280;
+  margin: 0;
+}
+
+.rescuedBadge {
+  display: inline-block;
+  background-color: #E5E7EB;
+  color: #4B5563;
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  margin-top: 0.25rem;
+}
+
+.qtyBox {
+  background-color: #F3F6F4;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #4B5563;
+}

@@ -82,7 +82,7 @@ export default function OrderHistoryUser() {
     <MainLayout
       title="PilahPilih"
       alignLeft={true}
-      hideBackButton={false}
+      hideBackButton={true}
       noShadow={false}
       contentClassName={styles.contentScreen}
     >
