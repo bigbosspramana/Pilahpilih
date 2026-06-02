@@ -10,6 +10,7 @@ import CheckoutUser from './views/pages/Buyer/CheckoutBuyer/checkoutuser_screen'
 import CartUser from './views/pages/Buyer/CartBuyer/cartuser_screen';
 import OrderHistoryUser from './views/pages/Buyer/OrderHistory/orderhistoryuser_screen';
 import OrderDetailUser from './views/pages/Buyer/OrderDetailBuyer/orderdetailuser_screen';
+import OrderTrackingUser from './views/pages/Buyer/OrderTracking/ordertrackinguser_screen';
 // import ProductDetailUser from './views/pages/Buyer/ProductDetailBuyer/detailproductuser_screen';
 
 export default function App() {
@@ -36,6 +37,7 @@ export default function App() {
         <Route path="/cart-user" element={<CartUser />} />
         <Route path="/order-history-user" element={<OrderHistoryUser />} />
         <Route path="/order-detail-user" element={<OrderDetailUser />} />
+        <Route path="/order-tracking-user" element={<OrderTrackingUser />} />
 
         {/* <Route element={<NavbarLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
