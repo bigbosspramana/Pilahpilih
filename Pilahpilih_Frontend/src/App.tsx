@@ -8,9 +8,12 @@ import DashboardUser from './views/pages/Buyer/DashboardBuyer/dashboarduser_scre
 import ProductDetailUser from './views/pages/Buyer/ProductDetailBuyer/detailproductuser_screen';
 import CheckoutUser from './views/pages/Buyer/CheckoutBuyer/checkoutuser_screen';
 import CartUser from './views/pages/Buyer/CartBuyer/cartuser_screen';
-import OrderHistoryUser from './views/pages/Buyer/OrderHistory/orderhistoryuser_screen';
+import OrderHistoryUser from './views/pages/Buyer/OrderHistoryBuyer/orderhistoryuser_screen';
 import OrderDetailUser from './views/pages/Buyer/OrderDetailBuyer/orderdetailuser_screen';
-import OrderTrackingUser from './views/pages/Buyer/OrderTracking/ordertrackinguser_screen';
+import OrderTrackingUser from './views/pages/Buyer/OrderTrackingBuyer/ordertrackinguser_screen';
+import ChatUser from './views/pages/Buyer/ChatBuyer/chatuser_screen';
+import MeetingPointMapUser from './views/pages/Buyer/MeetingPointMapBuyer/meetpointuser_screen';
+import ChatListUser from './views/pages/Buyer/ListChatBuyer/listchatuser_screen';
 // import ProductDetailUser from './views/pages/Buyer/ProductDetailBuyer/detailproductuser_screen';
 
 export default function App() {
@@ -38,6 +41,9 @@ export default function App() {
         <Route path="/order-history-user" element={<OrderHistoryUser />} />
         <Route path="/order-detail-user" element={<OrderDetailUser />} />
         <Route path="/order-tracking-user" element={<OrderTrackingUser />} />
+        <Route path="/chat-user" element={<ChatUser />} />
+        <Route path="/meetpoint-map-user" element={<MeetingPointMapUser />} />
+        <Route path="/chat-list-user" element={<ChatListUser />} />
 
         {/* <Route element={<NavbarLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
