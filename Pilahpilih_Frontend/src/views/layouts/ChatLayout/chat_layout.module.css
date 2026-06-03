@@ -1,0 +1,168 @@
+/* --- CHAT HEADER STYLES --- */
+.chatHeaderContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1rem;
+}
+
+.chatAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 20px;
+}
+
+.chatHeaderInfo {
+  flex: 1;
+}
+
+.chatName {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0 0 0.1rem 0;
+  color: #2e5a36;
+}
+
+.chatStatus {
+  font-size: 0.75rem;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  background-color: #3b7b4b;
+  border-radius: 50%;
+}
+
+.chatHeaderActions {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.iconBtn img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* --- CHAT WRAPPER --- */
+.chatScreenWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--bg-primary);
+}
+
+.chatScrollArea {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* --- CHAT FOOTER --- */
+.chatFooter {
+  background-color: #fafcfa;
+  padding-top: 0.5rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Quick Actions */
+.quickActions {
+  padding: 0 1.25rem 0.75rem 1.25rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actionBtn {
+  background-color: var(--primary-color);
+  width: 100%;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.actionBtn:hover {
+  background-color: #b1d8b8;
+}
+
+/* Input Area */
+.inputArea {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e7eb;
+}
+
+.inputField {
+  flex: 1;
+  background-color: #f3f6f4;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 24px;
+  font-size: 0.85rem;
+  outline: none;
+  color: #1a1a1a;
+}
+
+.inputField::placeholder {
+  color: #9ca3af;
+}
+
+.sendBtn {
+  background-color: #3b7b4b;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+
+.sendBtn:hover {
+  background-color: #2e5a36;
+}
+
+.sendIcon {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1);
+  margin-right: 2px;
+}
+
+.chatIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
