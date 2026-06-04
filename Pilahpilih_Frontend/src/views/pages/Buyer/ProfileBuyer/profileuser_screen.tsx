@@ -19,6 +19,7 @@ import iconSauceWhite from '@/assets/icons/icon-food-white.svg';
 import iconSauceBlack from '@/assets/icons/icon-food-black.svg';
 import iconFishWhite from '@/assets/icons/icon-fish-white.svg';
 import iconFishBlack from '@/assets/icons/icon-fish-black.svg';
+import BottomNav from "@/views/components/BottomNavbar/bottomnav";
 
 export default function ProfileUser() {
   // State untuk menyimpan preferensi yang sedang aktif
@@ -144,6 +145,8 @@ export default function ProfileUser() {
           <img src={iconLogout} alt="Logout" className={styles.logoutIcon} />
           Keluar dari Akun
         </button>
+
+        <BottomNav activeTab="profile" />
       </div>
     </MainLayout>
   );

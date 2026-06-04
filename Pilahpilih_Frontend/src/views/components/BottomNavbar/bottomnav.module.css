@@ -1,0 +1,55 @@
+/* Container utama navbar menempel di bawah */
+.navContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 12px 0;
+  border-top-left-radius: 28px; /* Lengkungan kiri atas */
+  border-top-right-radius: 28px; /* Lengkungan kanan atas */
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+  z-index: 100;
+}
+
+/* Gaya dasar untuk setiap tombol menu */
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 16px;
+  border-radius: 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Gaya ketika menu sedang aktif (Background Hijau) */
+.navItemActive {
+  background-color: #D5F0D6; /* Sesuaikan dengan kode warna hijau mudamu */
+}
+
+/* Ukuran Icon */
+.navIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Teks Inaktif (Abu-abu) */
+.navLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6B7280; 
+}
+
+/* Teks Aktif (Hijau Tua) */
+.navLabelActive {
+  color: #2F7C31; /* Sesuaikan dengan kode warna hijau tuamu */
+}

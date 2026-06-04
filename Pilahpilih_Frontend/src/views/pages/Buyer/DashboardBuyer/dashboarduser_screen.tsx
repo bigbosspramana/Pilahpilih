@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import MainLayout from "@/views/layouts/MainLayout/main_layout"; 
 import styles from "./dashboarduser_screen.module.css";
 import Button from "@/views/components/Button/button"; // Impor komponen Button untuk logout
+import BottomNav from "@/views/components/BottomNavbar/bottomnav";
 
 // --- Kumpulan Komponen Ikon ---
 const SearchIcon = () => (
@@ -32,15 +33,17 @@ const PlusIcon = () => (
   </svg>
 );
 
-// ✅ 1. DEFINISIKAN INTERFACE PROPS AGAR TERHUBUNG DENGAN LOGIN SCREEN
-interface BuyerDashboardProps {
-  userName: string | null;
-  products: any[];
-  onLogout: () => void;
-}
-
 // --- Komponen Utama ---
-export default function BuyerDashboard({ userName, products, onLogout }: BuyerDashboardProps) {
+export default function BuyerDashboard() {
+
+  const [userName, setUserName] = useState<string | null>("Pelanggan");
+  const [products, setProducts] = useState<any[]>([]);
+
+  // 2. Logika logout di dalam komponen
+  const handleLogout = () => {
+    console.log("Proses logout...");
+    // Tambahkan logika hapus token / redirect di sini
+  };
   
   // Aksi penambahan keranjang belanja (POST api/cart)
   const addToCart = (productId: number) => {
@@ -161,6 +164,8 @@ export default function BuyerDashboard({ userName, products, onLogout }: BuyerDa
             )}
           </div>
         </section>
+
+        <BottomNav activeTab="home" />
 
       </div>
     </MainLayout>

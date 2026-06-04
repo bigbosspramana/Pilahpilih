@@ -4,6 +4,7 @@ import MainLayout from "@/views/layouts/MainLayout/main_layout";
 // Import Icon Local (sesuai instruksi)
 import iconLocation from "@/assets/icons/icon-location-white.svg";
 import OrderItemCard from "@/views/components/HistoryItem/historyitem";
+import BottomNav from "@/views/components/BottomNavbar/bottomnav";
 
 // --- Type Definitions ---
 interface OrderButton {
@@ -117,6 +118,9 @@ export default function OrderHistoryUser() {
             <OrderItemCard key={order.id} order={order} />
           ))}
         </div>
+
+        <BottomNav activeTab="history" />
+
       </div>
     </MainLayout>
   );

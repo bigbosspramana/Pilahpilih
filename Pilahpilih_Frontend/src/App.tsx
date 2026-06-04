@@ -16,6 +16,7 @@ import MeetingPointMapUser from './views/pages/Buyer/MeetingPointMapBuyer/meetpo
 import ChatListUser from './views/pages/Buyer/ListChatBuyer/listchatuser_screen';
 import ProfileUser from './views/pages/Buyer/ProfileBuyer/profileuser_screen';
 import EditProfileUser from './views/pages/Buyer/EditProfileBuyer/editprofileuser_screen';
+import DashboardSeller from './views/pages/Seller/DashboardSeller/dashboardseller_screen';
 // import ProductDetailUser from './views/pages/Buyer/ProductDetailBuyer/detailproductuser_screen';
 
 export default function App() {
@@ -49,60 +50,10 @@ export default function App() {
         <Route path="/profile-user" element={<ProfileUser />} />
         <Route path="/edit-profile-user" element={<EditProfileUser />} />
 
-        {/* <Route element={<NavbarLayout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/home" element={<Dashboard />} />
-          <Route path="/list-chat" element={<ListChatPage />} />
-          <Route path="/friends-page" element={<HistoriPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-        </Route>
-
-        <Route
-          path="/edit-profile-companion"
-          element={<EditProfileCompanionPage />}
-        />
-
-        <Route
-          path="/detailpend-companion"
-          element={<DetailPendCompanionPage />}
-        />
-
-        <Route
-          path="/money-pages"
-          element={<MoneyPage />}
-        />
-
-        <Route
-          path="/pencairan-done"
-          element={<PencairanDonePage />}
-        />
-
-        <Route
-          path="/pencairan-pend"
-          element={<PencairanPendPage />}
-        />
-
-        <Route
-          path="/form-pencairan"
-          element={<FormPencairanPage />}
-        />
-
-        <Route
-          path="/notification"
-          element={<NotifciationPage />}
-        /> */}
-
-        {/* ======================================= */}
-        {/* RUTE DENGAN NAVBAR KHUSUS COMPANION     */}
-        {/* ======================================= */}
-        {/* <Route element={<NavbarLayout />}>
-          <Route path="/companion-dashboard" element={<DashboardCompanion />} />
-          <Route
-            path="/temanjalan-companion"
-            element={<TemanJalanCompanionPage />}
-          />
-          <Route path="/profile-companion" element={<ProfileCompanionPage />} />
-        </Route> */}
+        {/* =============== */}
+        {/*  RUTE SUPPLIER  */}
+        {/* =============== */}
+        <Route path="/dashboard-seller" element={<DashboardSeller />} />
       </Routes>
     </>
   );
