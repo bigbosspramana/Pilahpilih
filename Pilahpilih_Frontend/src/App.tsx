@@ -17,6 +17,15 @@ import ChatListUser from './views/pages/Buyer/ListChatBuyer/listchatuser_screen'
 import ProfileUser from './views/pages/Buyer/ProfileBuyer/profileuser_screen';
 import EditProfileUser from './views/pages/Buyer/EditProfileBuyer/editprofileuser_screen';
 import DashboardSeller from './views/pages/Seller/DashboardSeller/dashboardseller_screen';
+import MyProductsSeller from './views/pages/Seller/MyProductsSeller/myproductsseller_screen';
+import OrderManagementSeller from './views/pages/Seller/OrderManagementSeller/ordermanagementseller_screen';
+import OrderDetailSeller from './views/pages/Seller/OrderDetailSeller/orderdetailseller_screen';
+import AddProductSeller from './views/pages/Seller/AddProductSeller/addproductseller_screen';
+import EditProductSeller from './views/pages/Seller/EditProductSeller/editproductseller_screen';
+import ProfileSeller from './views/pages/Seller/ProfileSeller/profileseller_screen';
+import EditProfileSeller from './views/pages/Seller/EditProfileSeller/editprofileseller_screen';
+import ChatListSeller from './views/pages/Seller/ListChatSeller/listchatseller_screen';
+import ChatSeller from './views/pages/Seller/ChatSeller/chatseller_screen';
 // import ProductDetailUser from './views/pages/Buyer/ProductDetailBuyer/detailproductuser_screen';
 
 export default function App() {
@@ -50,10 +59,19 @@ export default function App() {
         <Route path="/profile-user" element={<ProfileUser />} />
         <Route path="/edit-profile-user" element={<EditProfileUser />} />
 
-        {/* =============== */}
-        {/*  RUTE SUPPLIER  */}
-        {/* =============== */}
+        {/* ============= */}
+        {/*  RUTE SELLER  */}
+        {/* ============= */}
         <Route path="/dashboard-seller" element={<DashboardSeller />} />
+        <Route path="/myproducts-seller" element={<MyProductsSeller />} />
+        <Route path="/order-management-seller" element={<OrderManagementSeller />} />
+        <Route path="/order-detail-seller" element={<OrderDetailSeller />} />
+        <Route path="/add-product-seller" element={<AddProductSeller />} />
+        <Route path="/edit-product-seller" element={<EditProductSeller />} />
+        <Route path="/profile-seller" element={<ProfileSeller />} />
+        <Route path="/edit-profile-seller" element={<EditProfileSeller />} />
+        <Route path="/list-chat-seller" element={<ChatListSeller />} />
+        <Route path="/chat-seller" element={<ChatSeller />} />
       </Routes>
     </>
   );

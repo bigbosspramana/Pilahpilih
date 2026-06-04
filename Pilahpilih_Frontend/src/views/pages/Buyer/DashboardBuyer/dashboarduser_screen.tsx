@@ -165,7 +165,7 @@ export default function BuyerDashboard() {
           </div>
         </section>
 
-        <BottomNav activeTab="home" />
+        <BottomNav activeTab="home" role="buyer"/>
 
       </div>
     </MainLayout>

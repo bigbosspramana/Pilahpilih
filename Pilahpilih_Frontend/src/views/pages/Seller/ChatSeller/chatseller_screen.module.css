@@ -1,0 +1,186 @@
+/* Layout Utama */
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: #FAFCFA;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1A1A1A;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
+  gap: 0.75rem;
+  z-index: 10;
+}
+
+.headerBack {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.headerAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.headerInfo {
+  flex: 1;
+}
+
+.headerName {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0 0 0.1rem 0;
+  color: #2E5A36;
+}
+
+.headerStatus {
+  font-size: 0.75rem;
+  color: #6B7280;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  background-color: #3B7B4B;
+  border-radius: 50%;
+}
+
+.headerActions {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* Area Chat (Scrollable) */
+.chatArea {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.dateWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.dateBadge {
+  background-color: #E5E7EB;
+  color: #4B5563;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* Chat Bubbles */
+.msgRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-end;
+  max-width: 85%;
+}
+
+.msgIncoming {
+  align-self: flex-start;
+}
+
+.msgOutgoing {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.msgAvatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.msgContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.msgBubble {
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.bubbleIncoming {
+  background-color: #FFFFFF;
+  color: #1A1A1A;
+  border: 1px solid #F3F6F4;
+  border-bottom-left-radius: 4px;
+}
+
+.bubbleOutgoing {
+  background-color: #3B7B4B;
+  color: #FFFFFF;
+  border-bottom-right-radius: 4px;
+}
+
+.msgImage {
+  width: 100%;
+  max-width: 260px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 3px solid #3B7B4B;
+}
+
+.msgTime {
+  font-size: 0.65rem;
+  color: #9CA3AF;
+}
+
+.timeIncoming {
+  align-self: flex-start;
+  margin-left: 0.25rem;
+}
+
+.timeOutgoing {
+  align-self: flex-end;
+  margin-right: 0.25rem;
+}
