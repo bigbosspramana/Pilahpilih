@@ -146,7 +146,7 @@ export default function ProfileUser() {
           Keluar dari Akun
         </button>
 
-        <BottomNav activeTab="profile" />
+        <BottomNav activeTab="profile" role="buyer"/>
       </div>
     </MainLayout>
   );

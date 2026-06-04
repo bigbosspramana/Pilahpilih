@@ -1,0 +1,242 @@
+/* Layout Utama */
+.container {
+  margin: 0 auto;
+  background-color: #FAFCFA;
+  min-height: 100vh;
+  padding: 0 0 1.25rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1A1A1A;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+}
+
+/* Card General */
+.card {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Profil Customer */
+.customerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.customerInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 0 0 0.1rem 0;
+  color: #1A1A1A;
+}
+
+.orderId {
+  font-size: 0.75rem;
+  color: #6B7280;
+  margin: 0;
+}
+
+.statusBadge {
+  background-color: #CDE8D2; /* Hijau muda */
+  color: #2E5A36; /* Hijau gelap */
+  padding: 0.35rem 0.85rem;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+/* Daftar Item */
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.itemRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.itemImg {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.itemDetails {
+  flex: 1;
+}
+
+.itemName {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin: 0 0 0.25rem 0;
+  color: #1A1A1A;
+}
+
+.itemQty {
+  font-size: 0.85rem;
+  color: #4B5563;
+  margin: 0;
+}
+
+.itemPrice {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #2E5A36;
+  margin: 0;
+}
+
+/* Divider & Total */
+.divider {
+  border-top: 1px dashed #D1D5DB;
+  margin: 1.5rem 0;
+}
+
+.totalSection {
+  text-align: center;
+}
+
+.totalLabel {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 0.25rem 0;
+}
+
+.totalValue {
+  font-size: 1.85rem;
+  font-weight: 900;
+  margin: 0;
+  color: #1A1A1A;
+}
+
+/* Map Section */
+.sectionLabel {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #4B5563;
+  margin: 0 0 1rem 0;
+}
+
+.mapWrapper {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+}
+
+.mapImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.clickMapOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(75, 85, 99, 0.85); /* Dark gray transparan */
+  color: #FFFFFF;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background-color 0.2s;
+}
+
+.clickMapOverlay:hover {
+  background-color: rgba(55, 65, 81, 0.95);
+}
+
+.addressLabel {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #1A1A1A;
+  margin: 0 0 0.25rem 0;
+}
+
+.addressText {
+  font-size: 0.85rem;
+  color: #4B5563;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Sticky Bottom Action */
+.bottomAction {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(to top, rgba(250, 252, 250, 1) 70%, rgba(250, 252, 250, 0));
+  z-index: 10;
+}
+
+.btnSelesai {
+  width: 100%;
+  background-color: transparent;
+  color: var(--primary-color); /* Orange */
+  border: 2px solid var(--primary-color);
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnSelesai:hover {
+  color: white;
+  background-color: var(--primary-color); /* Latar belakang orange sangat muda saat hover */
+}
+
+/* Tombol Pesanan Siap Diantar (Hijau Solid) */
+.btnSiapAntar {
+  width: 100%;
+  background-color: #3B7B4B; 
+  color: #FFFFFF;
+  border: none;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  box-shadow: 0 4px 12px rgba(59, 123, 75, 0.2);
+}
+
+.btnSiapAntar:hover {
+  background-color: #2E5A36;
+}

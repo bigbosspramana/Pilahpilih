@@ -1,0 +1,223 @@
+/* Layout Utama */
+.container {
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 0 0 7rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #1A1A1A;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+}
+
+/* Header Action (Ceklis) */
+.headerSaveBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.headerIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Images Section (Hanya Avatar) */
+.imagesSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 0.75rem;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #1A1A1A;
+  border: 4px solid #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.avatarCameraBtn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #3B7B4B;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #FFFFFF;
+  cursor: pointer;
+}
+
+.cameraIcon {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+}
+
+.accountType {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #6B7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+/* Card Form Umum */
+.card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+/* Form Input Groups */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #3B7B4B;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.pinPointBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #3B7B4B;
+  cursor: pointer;
+}
+
+.pinIcon {
+  width: 12px;
+  height: 12px;
+}
+
+/* Input Fields */
+.inputWrapper {
+  background-color: #F3F6F4;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inputField {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  font-family: inherit;
+  width: 100%;
+}
+
+.phonePrefix {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #4B5563;
+  margin-right: 0.25rem;
+}
+
+.textareaField {
+  resize: none;
+  min-height: 60px;
+  line-height: 1.4;
+}
+
+/* Category Pills */
+.categoryList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.catPill {
+  background-color: #F3F6F4;
+  color: #4B5563;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.catPillActive {
+  background-color: #CDE8D2;
+  color: #2E5A36;
+}
+
+/* Sticky Save Button */
+.bottomAction {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(to top, rgba(240, 244, 239, 1) 70%, rgba(240, 244, 239, 0));
+  z-index: 10;
+}
+
+.saveBtn {
+  width: 100%;
+  background-color: #3B7B4B;
+  color: #FFFFFF;
+  border: none;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(59, 123, 75, 0.2);
+  transition: background-color 0.2s;
+}
+
+.saveBtn:hover {
+  background-color: #2E5A36;
+}

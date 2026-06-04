@@ -119,7 +119,7 @@ export default function OrderHistoryUser() {
           ))}
         </div>
 
-        <BottomNav activeTab="history" />
+        <BottomNav activeTab="history" role="buyer"/>
 
       </div>
     </MainLayout>

@@ -7,6 +7,7 @@ import iconBox from "@/assets/icons/icon-box-green.svg"; // Sesuaikan path icon
 import iconBag from "@/assets/icons/icon-bag-green.svg";
 import iconTrendUp from "@/assets/icons/icon-trend-green.svg";
 import iconChevronRight from "@/assets/icons/icon-arrow-right-grey.svg";
+import BottomNav from "@/views/components/BottomNavbar/bottomnav";
 
 // Interface Data Aktivitas
 interface Activity {
@@ -140,6 +141,7 @@ export default function DashboardScreen() {
             ))}
           </div>
         </div>
+        <BottomNav activeTab="home" role='seller'/>
       </div>
     </MainLayout>
   );

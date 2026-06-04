@@ -1,0 +1,154 @@
+/* --- Override MainLayout Padding --- */
+.noPaddingContent {
+  padding: 0 !important;
+}
+
+/* --- Cover Image Area --- */
+.coverContainer {
+  width: 100%;
+  height: 220px;
+  position: relative;
+}
+
+.coverImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Main Content Area --- */
+.content {
+  padding: 0 1.5rem 2.5rem 1.5rem;
+  background-color: #FAFCFA;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* --- Avatar (Overlapping Cover) --- */
+.avatarWrapper {
+  margin-top: -45px; /* Menarik avatar ke atas agar menimpa cover */
+  margin-bottom: 1rem;
+  background-color: #FFFFFF;
+  padding: 4px; /* Memberikan efek border putih tebal */
+  border-radius: 16px; /* Bentuk melengkung pada frame */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 0;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px; /* Bentuk melengkung pada foto */
+  object-fit: cover;
+  display: block;
+}
+
+/* --- User Info --- */
+.name {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #1A1A1A;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.5px;
+}
+
+.verifiedBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.badgeIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.badgeText {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #2E5A36;
+}
+
+/* --- Edit Button --- */
+.editBtn {
+  background-color: #46794F;
+  color: #FFFFFF;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  transition: background-color 0.2s;
+}
+
+.editBtn:hover {
+  background-color: #36613F;
+}
+
+.editIcon {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+}
+
+/* --- Stats Grid --- */
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+.statCard {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  border: 1px solid transparent;
+}
+
+.statValue {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #2E5A36;
+  margin: 0 0 0.25rem 0;
+  letter-spacing: -1px;
+}
+
+.statLabel {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #4B5563;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* --- Logout Button --- */
+.logoutBtn {
+  width: 100%;
+  background-color: #C62828; /* Merah pekat sesuai gambar */
+  color: #FFFFFF;
+  border: none;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logoutBtn:hover {
+  background-color: #B71C1C;
+}

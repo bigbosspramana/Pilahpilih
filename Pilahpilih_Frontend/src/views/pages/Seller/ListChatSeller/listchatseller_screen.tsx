@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MainLayout from '@/views/layouts/MainLayout/main_layout';
-import styles from './listchatuser_screen.module.css';
+import styles from './listchatseller_screen.module.css';
 
 // Import local icon (Sesuaikan path)
 import iconSearch from '@/assets/icons/icon-search.svg'; 
@@ -17,7 +17,7 @@ interface ChatItem {
   avatarUrl: string;
 }
 
-export default function ChatListScreen() {
+export default function ChatListSeller() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -124,7 +124,7 @@ export default function ChatListScreen() {
           ))}
         </div>
 
-        <BottomNav activeTab="chat" role='buyer'/>
+        <BottomNav activeTab="chat" role='seller'/>
         
       </div>
     </MainLayout>
