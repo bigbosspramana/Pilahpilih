@@ -5,6 +5,7 @@ import styles from './listchatuser_screen.module.css';
 
 // Import local icon (Sesuaikan path)
 import iconSearch from '@/assets/icons/icon-search.svg'; 
+import BottomNav from '@/views/components/BottomNavbar/bottomnav';
 
 // Tipe Data Chat
 interface ChatItem {
@@ -122,6 +123,8 @@ export default function ChatListScreen() {
             </div>
           ))}
         </div>
+
+        <BottomNav activeTab="chat" />
         
       </div>
     </MainLayout>
