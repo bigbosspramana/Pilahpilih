@@ -14,6 +14,8 @@ import OrderTrackingUser from './views/pages/Buyer/OrderTrackingBuyer/ordertrack
 import ChatUser from './views/pages/Buyer/ChatBuyer/chatuser_screen';
 import MeetingPointMapUser from './views/pages/Buyer/MeetingPointMapBuyer/meetpointuser_screen';
 import ChatListUser from './views/pages/Buyer/ListChatBuyer/listchatuser_screen';
+import ProfileUser from './views/pages/Buyer/ProfileBuyer/profileuser_screen';
+import EditProfileUser from './views/pages/Buyer/EditProfileBuyer/editprofileuser_screen';
 // import ProductDetailUser from './views/pages/Buyer/ProductDetailBuyer/detailproductuser_screen';
 
 export default function App() {
@@ -44,6 +46,8 @@ export default function App() {
         <Route path="/chat-user" element={<ChatUser />} />
         <Route path="/meetpoint-map-user" element={<MeetingPointMapUser />} />
         <Route path="/chat-list-user" element={<ChatListUser />} />
+        <Route path="/profile-user" element={<ProfileUser />} />
+        <Route path="/edit-profile-user" element={<EditProfileUser />} />
 
         {/* <Route element={<NavbarLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
