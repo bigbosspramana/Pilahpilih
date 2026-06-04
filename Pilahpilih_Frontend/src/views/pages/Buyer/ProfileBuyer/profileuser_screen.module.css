@@ -1,0 +1,275 @@
+/* Layout Utama */
+.container {
+  margin: 0 auto;
+  background-color: #FAFCFA;
+  min-height: 100vh;
+  padding: 0 0 2rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  color: #1A1A1A;
+}
+
+/* Card Profil User */
+.profileCard {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 2rem 1.25rem 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+}
+
+.avatarWrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #FFFFFF;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.verifiedBadge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #3B7B4B;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #FFFFFF;
+}
+
+.badgeIcon {
+  width: 12px;
+  height: 12px;
+  filter: brightness(0) invert(1);
+}
+
+.userName {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #2E5A36;
+  margin: 0;
+}
+
+/* Card Total Rescued (Dampak) */
+.impactCard {
+  background-color: #3B7B4B;
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  color: #FFFFFF;
+  box-shadow: 0 4px 15px rgba(59, 123, 75, 0.2);
+}
+
+.impactTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 0 0 0.5rem 0;
+  opacity: 0.9;
+}
+
+.impactValue {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 0.25rem 0;
+  line-height: 1;
+}
+
+.impactUnit {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.impactSubtitle {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* Bagian Preferensi Usaha */
+.prefsSection {
+  background-color: #F0F4EF;
+  border-radius: 20px;
+  padding: 1.5rem;
+}
+
+.prefsHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prefsIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.prefsTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 0;
+  color: #1A1A1A;
+}
+
+.prefsDesc {
+  font-size: 0.8rem;
+  color: #4B5563;
+  line-height: 1.4;
+  margin: 0 0 1.25rem 0;
+}
+
+.prefsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.prefCard {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.prefCardActive {
+  background-color: #3B7B4B;
+  color: #FFFFFF;
+}
+
+.prefIcon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.prefIconActive {
+  filter: brightness(0) invert(1);
+  opacity: 1;
+}
+
+/* Warna font saat TIDAK aktif (Hitam) */
+.prefLabel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+  color: #1A1A1A; 
+  transition: color 0.2s ease;
+}
+
+/* Warna font saat AKTIF (Putih) */
+.prefLabelActive {
+  color: #FFFFFF;
+}
+
+.activeIndicator {
+  width: 20px;
+  height: 2px;
+  background-color: #FFFFFF;
+  border-radius: 2px;
+  margin-top: 0.25rem;
+}
+
+/* Card Menu Bawah */
+.menuCard {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  transition: background-color 0.2s;
+}
+
+.menuCard:hover {
+  background-color: #F9FAFB;
+}
+
+.menuLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menuIconBox {
+  background-color: #CDE8D2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menuIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.menuTitle {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin: 0 0 0.1rem 0;
+  color: #1A1A1A;
+}
+
+.menuSubtitle {
+  font-size: 0.75rem;
+  color: #6B7280;
+  margin: 0;
+}
+
+.arrowIcon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+}
+
+/* Tombol Logout */
+.logoutBtn {
+  background-color: #FEE2E2; /* Merah pastel */
+  color: #DC2626; /* Merah gelap */
+  border: none;
+  padding: 1rem;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+.logoutBtn:hover {
+  background-color: #FECACA;
+}
+
+.logoutIcon {
+  width: 18px;
+  height: 18px;
+}
