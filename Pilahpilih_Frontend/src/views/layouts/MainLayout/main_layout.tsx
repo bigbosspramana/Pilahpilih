@@ -13,6 +13,7 @@ interface MainLayoutProps {
   contentClassName?: string;
   screenDisplay?: string;
   hideBackButton?: boolean;
+  role?: "buyer" | "seller";
   rightComponent?: ReactNode; // Tambahkan ini
 }
 
@@ -26,12 +27,21 @@ export default function MainLayout({
   contentClassName = "",
   screenDisplay = "",
   hideBackButton = true,
+  role = "buyer",
   rightComponent,
 }: MainLayoutProps) {
   const navigate = useNavigate();
 
   const handleBack = () => {
     navigate(-1);
+  };
+
+  const handleProfileClick = () => {
+    if (role === "seller") {
+      navigate("/profile-seller"); // Sesuaikan dengan route profile seller kamu
+    } else {
+      navigate("/profile-user"); // Sesuaikan dengan route profile buyer kamu
+    }
   };
   return (
     <div className={`${styles.screen} ${screenDisplay}`}>
@@ -56,11 +66,17 @@ export default function MainLayout({
 
             {rightComponent}
             {rightProfile && (
-              <img
-                src={rightProfile}
-                alt="Profile"
+              <button
+                onClick={handleProfileClick}
                 className={styles.profileIcon}
-              />
+                aria-label="Ke Halaman Profil"
+              >
+                <img
+                  src={rightProfile}
+                  alt="Profile"
+                  className={styles.profileIcon1}
+                />
+              </button>
             )}
           </div>
         </div>
