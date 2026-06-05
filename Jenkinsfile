@@ -15,14 +15,17 @@ pipeline {
         }
 
         stage('2. Build Docker Image') {
+            // Kita minta Jenkins menggunakan container docker resmi untuk mengeksekusi stage ini
+            agent {
+                docker { 
+                    image 'docker:latest'
+                    // Berikan akses ke docker socket Proxmox Anda
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
+                }
+            }
             steps {
                 echo "Memulai pengetesan build image: ${DOCKER_IMAGE}"
-                script {
-                    // Jenkins akan mencoba membuat Docker image berdasarkan Dockerfile project.
-                    // Jika ada error di kode React/Vite (misal salah ketik/missing import), 
-                    // stage ini akan otomatis gagal dan memberi tahu Anda.
-                    sh "docker build -t ${DOCKER_IMAGE}:local-test ."
-                }
+                sh "docker build -t ${DOCKER_IMAGE}:local-test ."
             }
         }
 
